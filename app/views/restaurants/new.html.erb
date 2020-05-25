@@ -1,0 +1,11 @@
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :cuisine %>
+  <%= f.simple_fields_for :menus do |m|%>
+    <%= m.input :currency %>
+    <%= m.input :photos, as: :file, mulitiple: true %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
