@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_030721) do
 
   create_table "menus", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
-    t.boolean "exported"
+    t.boolean "exported", default: false
     t.string "currency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
