@@ -7,14 +7,20 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
+  <body class="d-flex flex-column">
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
-  </body>
-</html>
+    <%= render 'shared/navbar' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer class="d-flex justify-content-center align-items-center mt-auto py-3">
+      <p class="px-3">©2020 Snapcarte</p>
+      <p class="px-3"><i class="fab fa-facebook-f"></i></p>
+      <p class="px-3"><i class="fab fa-instagram"></i></p>
+      <p class="px-3"><i class="fab fa-twitter"></i></p>
+    </footer>
+    </body>
+  </html>
