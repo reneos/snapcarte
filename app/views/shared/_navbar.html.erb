@@ -11,6 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+      <div class="navbar">
         <li class="nav-item active">
           <%= link_to "Home", "#", class: "nav-link" %>
         </li>
@@ -18,7 +19,7 @@
           <%= link_to "Messages", "#", class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "https://www.goobike.com/motocle/img/noavatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
@@ -30,6 +31,7 @@
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
       <% end %>
+      </div>
     </ul>
   </div>
 </div>
