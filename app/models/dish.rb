@@ -1,5 +1,5 @@
 class Dish < ApplicationRecord
   validates :name, :price, :description, presence: true
-  has_one :entry
-  has_one :menu, through: :entry
+  has_many :entries
+  has_many :menus, through: :entries
 end
