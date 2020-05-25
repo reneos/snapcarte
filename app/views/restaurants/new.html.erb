@@ -1,11 +1,22 @@
-<%= simple_form_for @restaurant do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :phone_number %>
-  <%= f.input :cuisine %>
-  <%= f.simple_fields_for :menus do |m|%>
-    <%= m.input :currency %>
-    <%= m.input :photos, as: :file, mulitiple: true %>
-  <% end %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h1 class="text-monospace d-flex justify-content-center"><strong>Create resturant</strong></h1>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 mt-5">
+      <%= simple_form_for @restaurant do |f| %>
+      <i class="fas fa-file-signature"></i><%= f.input :name %>
+      <i class="fas fa-map-marker-alt"></i><%= f.input :address %>
+      <i class="fas fa-phone"></i><%= f.input :phone_number %>
+      <i class="fas fa-utensils"></i><%= f.input :cuisine %>
+    <%= f.simple_fields_for :menus do |m|%>
+      <i class="fas fa-yen-sign"></i><%= m.input :currency %>
+      <div class="mb-3 mt-4">
+      <%= m.input :photos, as: :file, mulitiple: true %>
+      <% end %>
+        </div>
+      <div class="mt-4 mb-5">
+        <%= f.submit 'subimt', class:"btn btn-warning"%>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
