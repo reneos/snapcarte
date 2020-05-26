@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="text-monospace d-flex justify-content-center"><strong>Create resturant</strong></h1>
-  <div class="row justify-content-center">
+  <div class="">
     <div class="col-12 col-md-8 mt-5">
       <%= simple_form_for @restaurant do |f| %>
       <%= f.input :name, label: ('<i class="fas fa-file-signature"></i> Name').html_safe%>
@@ -14,7 +14,7 @@
       <% end %>
         </div>
       <div class="mt-4 mb-5">
-        <%= f.submit 'subimt', class:"btn btn-warning"%>
+        <%= f.submit 'subimt', class:"btn btn-warning rounded-pill"%>
       </div>
     <% end %>
     </div>
