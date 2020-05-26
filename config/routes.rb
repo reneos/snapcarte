@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   resources :dishes, only: [:create, :update]
   resources :entries, only: :create
+  # patch "menus/:id", to "menus#export"
 end
