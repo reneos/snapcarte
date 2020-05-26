@@ -45,9 +45,11 @@
 .photo {
   border-radius: 8px;
   top: -100px;
+  object-fit: cover;
 }
 .jumbotron {
   padding: 2em 2em;
+  background-color: $dark-yellow;
 }
 
 
