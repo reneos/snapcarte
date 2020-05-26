@@ -1,0 +1,8 @@
+ <% @restaurant.each do |restaurant| %>
+    <%= restaurant.name%>
+    <%= restaurant.address%>
+    <%= restaurant.cuisine%>
+    <%= restaurant.phone_number%>
+  <% end %>
+
+<%= link_to 'dashboard',  dashboard_index_path %>

@@ -1,3 +1,8 @@
 <% @menu.photos.each do |photo| %>
   <%= cl_image_tag photo.key, width: 300, height: 300, crop: :fill %>
 <% end %>
+
+
+<%= form_for(@menu) do |f| %>
+  <% f.input :dish %>
+<% end %>

@@ -1,4 +1,9 @@
 class RestaurantsController < ApplicationController
+  def show
+    @restaurant = Restaurant.find(params[:id])
+    authorize @restaurant
+  end
+
   def new
     @restaurant = Restaurant.new
     @restaurant.menus.build
