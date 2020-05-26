@@ -1,4 +1,4 @@
-<%= simple_form_for @restaurant do |f| %>
+<%= simple_form_for @restaurant, remote: true do |f| %>
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :phone_number %>

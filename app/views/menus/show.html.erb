@@ -1,1 +1,8 @@
-show.html.erb
+<ul class="list-group">
+<% @menu.dishes.each do |dish| %>
+  <li class="list-group-item d-flex justify-content-between">
+    <div><%= dish.name %></div>
+    <div>$<%= dish.price.to_f / 100 %></div>
+  </li>
+<% end %>
+</ul>
