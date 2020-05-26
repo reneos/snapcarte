@@ -1,3 +1,8 @@
-<% @menu.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, width: 300, height: 300, crop: :fill %>
+<ul class="list-group">
+<% @menu.dishes.each do |dish| %>
+  <li class="list-group-item d-flex justify-content-between">
+    <div><%= dish.name %></div>
+    <div>$<%= dish.price.to_f / 100 %></div>
+  </li>
 <% end %>
+</ul>

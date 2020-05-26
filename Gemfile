@@ -65,3 +65,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 gem 'money-rails', '~>1.12'
+
