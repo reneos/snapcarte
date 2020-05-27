@@ -64,9 +64,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ADDED GEMS
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
-
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-
+gem 'turbolinks_render'
+gem 'faker'
 gem 'money-rails', '~>1.12'
 
 

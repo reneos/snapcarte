@@ -13,9 +13,13 @@ class DishPolicy < ApplicationPolicy
     owns_restaurant?
   end
 
+  def destroy?
+    owns_restaurant?
+  end
+
   private
   def owns_restaurant?
-    record.menus.first.user == user
+    record.menus.first.restaurant.user == user
   end
 
 end

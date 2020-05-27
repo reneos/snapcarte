@@ -1,5 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
+  background-color: $dark-yellow;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -10,15 +11,39 @@
   width: 40px;
 }
 .navbar-brand {
-  border: 1px solid rgb(255, 91, 68);
+  border: 2px solid rgb(255, 91, 68);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
   p {
     color: $bright-red;
     margin: 0px 4px;
     padding: 0px 4px;
+    font-weight: bold;
     &:hover {
-      // color: $dark-yellow;
       margin: 0px 4px;
       padding: 0px 4px;
     }
+  }
+}
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+  color: $bright-red;
+  font-weight: bold;
+}
+
+.navbar-expand-sm .navbar-nav .dropdown-menu {
+  background-color: #fbf7ed;
+}
+
+.dropdown-item {
+  a {
+    &:hover {
+      color: $bright-red;
+    }
+  }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(68, 68, 68, 1);
+  &:hover {
+    color: $bright-red;
   }
 }

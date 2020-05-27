@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:show, :new, :create] do
     resources :menus, only: [:show, :create, :edit, :update]
     resources :dashboards, only: [:index]
-
   end
-  resources :dishes, only: [:create, :update]
-  resources :entries, only: :create
+  resources :menus, only: [] do
+    resources :dishes, only: [:update]
   end
-
-
