@@ -1,19 +1,19 @@
 <div class="container">
-  <h1 class="text-center">Dashboard <i class="fas fa-chart-line"></i></h1>
-  <h2 class='mt-5'> <%= @restaurant.name %> <i class="fas fa-utensils"></i></h2>
+  <h1 class="text-center"><i class="fas fa-chart-line"></i> Dashboard</h1>
+  <h2 class='mt-5'><i class="fas fa-utensils"></i> <%= @restaurant.name %></h2>
   <div class="info-restaurant">
-    <div class="col-12 col-md-8 mt-5 mb-4 ">
-      <h3 class="">Restaurant details <i class="fas fa-info-circle"></i></h3>
+    <div class="col-12 col-md-8 mt-5 mb-5 ">
+      <h3 class=""><i class="fas fa-info-circle"></i> Restaurant details</h3>
       <ul class="mb-3">Restaurant address: <%= @restaurant.address %></ul>
       <ul class="mb-3">Phone number: <%= @restaurant.phone_number %></ul>
       <ul class="mb-3">Cuisine: <%= @restaurant.cuisine %></ul>
     </div>
   </div>
-<h2>Your menus</h2>
+<h2><i class="fas fa-list-ul"></i> Your menus</h2>
 
 
 <div class="info-restaurant">
-<table class="table table-bordered table-secondary  col-12 col-md-8 mt-2 mb-4">
+<table class="table table-bordered table-secondary col-12 col-md-8 mt-2 mb-5">
   <thead >
     <tr>
       <th scope="col">#</th>
@@ -35,14 +35,14 @@
   </tbody>
 </table>
 </div>
-<h2>Restaurant Description <i class="far fa-edit"></i></h2>
+  <h2><i class="far fa-edit"></i> Restaurant Description</h2>
 <div class="form-group">
     <label for="exampleFormControlTextarea1">Edit your restaurant description</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     <button type="submit" class="btn btn-warning mt-1 mb-2">Edit</button>
   </div>
-  <div class="btn btn-warning text-decoration-none mt-5 mb-5">
-  <%= link_to 'go back', restaurants_path %>
-</div>
+  <div class="btn btn-warning btn-block text-decoration-none mt-5 mb-5">
+    <%= link_to 'Go back', restaurants_path %>
+  </div>
 </div>
 
