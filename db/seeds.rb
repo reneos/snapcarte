@@ -19,8 +19,8 @@ puts "user created"
 
 5.times do
   restaurant = Restaurant.new
-  restaurant.name = Faker::Games::Witcher
-  restaurant.address = Faker::Address
+  restaurant.name = Faker::Games::Witcher.witcher
+  restaurant.address = Faker::Address.full_address
   restaurant.phone_number = Faker::PhoneNumber.phone_number
   restaurant.cuisine = Faker::Nation.nationality
   restaurant.user = User.all.sample
@@ -28,3 +28,12 @@ puts "user created"
 end
 
 puts "Created new restaurants"
+
+5.times do
+  menu = Menu.new
+  menu. currency = Faker::Currency.code
+  menu.restaurant = Menu.all.sample
+  menu.photos = 'logo.png'
+  menu.save!
+end
+puts "Created currency"
