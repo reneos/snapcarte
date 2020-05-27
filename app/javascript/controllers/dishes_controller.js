@@ -9,6 +9,11 @@ export default class extends Controller {
     this.infoTarget.classList.remove('w-100')
     this.nameFormTarget.size = this.nameFormTarget.value.length;
     this.priceTarget.classList.add('hidden-form')
+    if (e.currentTarget == this.nameTarget) {
+      this.nameFormTarget.focus();
+    } else {
+      this.priceFormTarget.focus();
+    }
   }
 
   submitOnEnter(e) {
