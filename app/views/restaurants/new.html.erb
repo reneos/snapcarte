@@ -8,11 +8,11 @@
       <%= f.input :phone_number, label: ('<i class="fas fa-phone"></i> Phone_number').html_safe %>
       <%= f.input :cuisine, label: ('<i class="fas fa-utensils"></i> Cuisine').html_safe %>
       <%= f.simple_fields_for :menus do |m|%>
-      <%= m.input :currency, label: ('<i class="fas fa-yen-sign"></i> Currency').html_safe %>
-      <div class="mb-3 mt-4">
-      <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu') %>
+
+      <%= m.input :currency, collection: Money::Currency._instances.keys.map(&:upcase), label: ('<i class="fas fa-yen-sign"></i> Currency').html_safe %>
+      <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
+
       <% end %>
-        </div>
       <div class="mt-4 mb-5">
         <%= f.submit 'subimt', class:"btn btn-danger rounded-pill"%>
       </div>
