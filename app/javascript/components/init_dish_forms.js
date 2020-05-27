@@ -1,6 +1,0 @@
-
-const initDishForms = () => {
-
-}
-
-export { initDishForms }

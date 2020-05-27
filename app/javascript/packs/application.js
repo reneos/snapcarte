@@ -25,7 +25,6 @@ require("channels")
 // External imports
 import "bootstrap";
 import { initSelect2 } from '../components/init_select2';
-import { initDishForms } from '../components/init_dish_forms';
 
 
 // Internal imports, e.g:
@@ -35,7 +34,6 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initSelect2();
-  initDishForms();
 });
 
 import "controllers"
