@@ -1,6 +1,7 @@
 class MenusController < ApplicationController
   def edit
     @menu = Menu.find(params[:id])
+    @restaurant = @menu.restaurant
     authorize @menu
   end
 
