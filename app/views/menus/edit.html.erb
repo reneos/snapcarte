@@ -1,6 +1,11 @@
 <ul class="list-group">
 <% @menu.dishes.each do |dish| %>
   <li class="list-group-item d-flex justify-content-between">
+    <%= simple_form_for dish, remote: true do |f| %>
+      <%= f.input :name %>
+      <%= f.input :price %>
+    <% end %>
+
     <div><%= dish.name %></div>
     <div>$<%= dish.price.to_f / 100 %></div>
   </li>
