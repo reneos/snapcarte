@@ -3,6 +3,9 @@
 }
 
 .dishes-list {
+  a {
+    color: inherit;
+  }
   form {
     display: flex;
     justify-content: space-between;
