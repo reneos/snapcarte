@@ -31,9 +31,13 @@ puts "Created new restaurants"
 
 5.times do
   menu = Menu.new
-  menu. currency = Faker::Currency.code
-  menu.restaurant = Menu.all.sample
-  menu.photos = 'logo.png'
+  menu.currency = Faker::Currency.code
+  menu.restaurant = Restaurant.all.sample
+  # menu.photos = File.open('../app/assets/images/menu_photo.jpg')
+  # file = URI.open(menu)
+  # menu.photos.attach(io: file, filename: 'menu_photo.jpg', content_type: 'image/jpg')
+  # menu.photos = Rails.root.join("app/assets/images/menu_photo.jpg").open
+  menu.photos.attach(io: File.open('app/assets/images/menu_photo.jpg'), filename: 'menu_photo.jpg')
   menu.save!
 end
 puts "Created currency"
