@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :menus, only: [] do
     resources :dishes, only: [:update]
   end
+  resources :dishes, only: [:destroy]
 end
