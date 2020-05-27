@@ -1,11 +1,17 @@
 .info-restaurant {
-
-
+  color: $bright-red;
 }
 .list-group {
   box-shadow: 1px 1px 1px #e4e4e4;
 
 }
 .table {
+  color: $bright-red;
+  background-color: $dark-yellow;
+  border: 2px solid black;
+  border-radius: 5px;
+}
 
+.table a {
+  color: $bright-red;
 }
