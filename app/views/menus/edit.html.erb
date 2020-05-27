@@ -1,14 +1,14 @@
 <ul class="list-group dishes-list">
-<% @dishes.each do |dish| %>
-  <li class="list-group-item d-flex justify-content-between">
-    <%= simple_form_for [@menu, dish], remote: true do |f| %>
-      <%= f.input :name %>
-      <%= f.input :price %>
-      <%= f.submit %>
+<% @menu.dishes.order(:created_at).each do |dish| %>
+  <li class="list-group-item d-flex justify-content-between" data-controller="dishes">
+    <%= simple_form_for [@menu, dish], html: { class: 'hidden-form', data: { target: 'dishes.editForm' } }, remote: true do |f| %>
+      <%= f.input :name, label: false, input_html: { data: { target: 'dishes.nameForm', action: 'keypress->dishes#submitOnEnter'} } %>
+      <%= f.input :price, label: false, input_html: { data: { target: 'dishes.priceForm', action: 'keypress->dishes#submitOnEnter'} } %>
+      <%= f.button :submit, class: 'hidden-form', data: { target: 'dishes.submitButton' } %>
     <% end %>
 
-    <div><%= dish.name %></div>
-    <div>$<%= dish.price.to_f / 100 %></div>
+    <div data-action="click->dishes#showEditForm" data-target="dishes.name"><%= dish.name %></div>
+    <div data-action="click->dishes#showEditForm" data-target="dishes.price">$<%= dish.price.to_f / 100 %></div>
   </li>
 <% end %>
 
