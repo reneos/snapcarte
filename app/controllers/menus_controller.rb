@@ -1,6 +1,8 @@
 class MenusController < ApplicationController
   def edit
     @menu = Menu.find(params[:id])
+    @restaurant = @menu.restaurant
+    @dishes = @menu.dishes.order(:created_at)
     authorize @menu
   end
 

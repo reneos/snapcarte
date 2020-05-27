@@ -1,9 +1,10 @@
-<ul class="list-group">
-<% @menu.dishes.each do |dish| %>
+<ul class="list-group dishes-list">
+<% @dishes.each do |dish| %>
   <li class="list-group-item d-flex justify-content-between">
-    <%= simple_form_for dish, remote: true do |f| %>
+    <%= simple_form_for [@menu, dish], remote: true do |f| %>
       <%= f.input :name %>
       <%= f.input :price %>
+      <%= f.submit %>
     <% end %>
 
     <div><%= dish.name %></div>

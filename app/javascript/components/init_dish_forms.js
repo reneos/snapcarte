@@ -1,0 +1,6 @@
+
+const initDishForms = () => {
+
+}
+
+export { initDishForms }
