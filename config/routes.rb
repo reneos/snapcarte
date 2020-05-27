@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :dishes, only: [:create, :update]
   resources :entries, only: :create
   end
-end
+
 

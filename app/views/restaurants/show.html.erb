@@ -1,12 +1,17 @@
-<div class="">
-  <h1> <%= @restaurant.name %></h1>
-  <p>Restaurant address: <%= @restaurant.address %></p>
-  <p>Phone number: <%= @restaurant.phone_number %>
-  <p>Cuisine:<%= @restaurant.cuisine %></p>
-  <h2>Your menus</h2>
-</div>
+<div class="container">
+  <h1 class='mt-5'> <%= @restaurant.name %></h1>
+  <div class="info-restaurant">
+    <div class="list-group col-12 col-md-8 mt-5 mb-4 ">
+      <li class="list-group-item active">Restaurant address: <%= @restaurant.address %></li>
+      <li class="list-group-item">Phone number: <%= @restaurant.phone_number %></li>
+      <li class="list-group-item">Cuisine:<%= @restaurant.cuisine %></li>
+    </div>
+  </div>
+<h2>Your menus</h2>
 
-<table class="table">
+
+<div class="info-restaurant">
+<table class="table table-bordered table-secondary mt-3 col-12 col-md-8 mt-5 mb-4">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -24,9 +29,14 @@
       <th scope="row">2</th>
       <td><%= link_to 'form', restaurant_menu_path(@restaurant) %></td>
       <td><%= link_to 'restaurant description', restaurant_path(:id) %></td>
-      <td></td>
     </tr>
   </tbody>
 </table>
+</div>
+<div class="table">
+  <div class="btn btn-warning text-decoration-none">
+  <%= link_to 'go back', restaurants_path %>
+</div>
+</div>
+</div>
 
-<%= link_to 'go back', restaurants_path %>
