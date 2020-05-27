@@ -1,22 +1,21 @@
 <div class="container">
-  <h1 class="text-monospace d-flex justify-content-center"><strong>Create resturant</strong></h1>
+  <h1 class="text-monospace d-flex justify-content-center"><strong>Create restaurant</strong></h1>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 mt-5">
-      <%= simple_form_for @restaurant do |f| %>
-      <%= f.input :name, label: ('<i class="fas fa-file-signature"></i> Name').html_safe%>
+      <%= simple_form_for @restaurant, remote: true do |f| %>
+      <%= f.input :name, label: ('<i class="fas fa-file-signature"></i> Restaurant name').html_safe%>
       <%= f.input :address, label: ('<i class="fas fa-map-pin"></i> Address').html_safe %>
       <%= f.input :phone_number, label: ('<i class="fas fa-phone"></i> Phone_number').html_safe %>
       <%= f.input :cuisine, label: ('<i class="fas fa-utensils"></i> Cuisine').html_safe %>
       <%= f.simple_fields_for :menus do |m|%>
-      <%= m.input :currency, label: ('<i class="fas fa-yen-sign"></i> Currency').html_safe %>
-      <div class="mb-3 mt-4">
-      <%= m.input :photos, as: :file, mulitiple: true %>
+      <%= m.input :currency, collection: Money::Currency._instances.keys.map(&:upcase), input_html:{class: "select2"}, label: ('<i class="fas fa-yen-sign"></i> Currency').html_safe %>
+      <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
       <% end %>
-        </div>
       <div class="mt-4 mb-5">
-        <%= f.submit 'subimt', class:"btn btn-warning rounded-pill"%>
+        <%= f.submit 'submit', class:"btn btn-danger rounded-pill"%>
       </div>
     <% end %>
     </div>
   </div>
 </div>
+

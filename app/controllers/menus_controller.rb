@@ -8,4 +8,10 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     authorize @menu
   end
+
+  def export
+    @menu = Menu.find(params[:id])
+    authorize @menu
+    # exported == true
+  end
 end

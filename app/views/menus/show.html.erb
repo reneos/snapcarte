@@ -1,5 +1,10 @@
-<%= simple_form_for [@restaurant, @menu] do |f| %>
-  <% f.imput :dish %>
 
+<ul class="list-group">
+<% @menu.dishes.each do |dish| %>
+  <li class="list-group-item d-flex justify-content-between">
+    <div><%= dish.name %></div>
+    <div>$<%= dish.price.to_f / 100 %></div>
+  </li>
 <% end %>
+</ul>
 
