@@ -1,14 +1,19 @@
 <ul class="list-group dishes-list">
 <% @menu.dishes.order(:created_at).each do |dish| %>
-  <li class="list-group-item d-flex justify-content-between" data-controller="dishes">
+  <li class="list-group-item d-flex justify-content-between align-items-center" data-controller="dishes">
     <%= simple_form_for [@menu, dish], html: { class: 'hidden-form', data: { target: 'dishes.editForm' } }, remote: true do |f| %>
       <%= f.input :name, label: false, input_html: { data: { target: 'dishes.nameForm', action: 'keypress->dishes#submitOnEnter'} } %>
       <%= f.input :price, label: false, input_html: { data: { target: 'dishes.priceForm', action: 'keypress->dishes#submitOnEnter'} } %>
       <%= f.button :submit, class: 'hidden-form', data: { target: 'dishes.submitButton' } %>
     <% end %>
 
-    <div data-action="click->dishes#showEditForm" data-target="dishes.name"><%= dish.name %></div>
-    <div data-action="click->dishes#showEditForm" data-target="dishes.price">$<%= dish.price.to_f / 100 %></div>
+    <div class="d-flex justify-content-between w-100" data-target="dishes.info">
+      <div data-action="click->dishes#showEditForm" data-target="dishes.name"><%= dish.name %></div>
+      <div data-action="click->dishes#showEditForm" data-target="dishes.price">$<%= dish.price.to_f / 100 %></div>
+    </div>
+    <%= link_to dish_path(dish), class: 'ml-3', method: :delete, remote: true do %>
+    <i class="fas fa-minus-circle"></i>
+    <% end %>
   </li>
 <% end %>
 
