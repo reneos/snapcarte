@@ -1,14 +1,10 @@
 
 class Menu < ApplicationRecord
   belongs_to :restaurant
-  has_many :entries
-  has_many :dishes, through: :entries
+  has_many :dishes, dependent: :destroy
   validates :currency, :photos, presence: true
   after_create_commit :transcribe_text
   has_many_attached :photos
-
-
-
 
   private
   def transcribe_text
