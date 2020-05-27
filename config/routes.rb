@@ -9,7 +9,3 @@ Rails.application.routes.draw do
   resources :menus, only: [] do
     resources :dishes, only: [:update]
   end
-  resources :dishes, only: [:create, :destroy]
-  resources :entries, only: :create
-end
-
