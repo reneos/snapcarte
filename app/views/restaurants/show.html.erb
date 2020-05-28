@@ -21,6 +21,9 @@
 
   </div>
 
+  <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
   <div class="col-12 col-md-4 col-lg-4 restaurant-show-right-column">
     <div class="container pt-4">
       <div class="restaurant-show-pricing"></div>
