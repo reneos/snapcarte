@@ -1,8 +1,8 @@
 class DishesController < ApplicationController
   def update
     @dish = Dish.find(params[:id])
-    @dish.update(dish_params)
     @menu = Menu.find(params[:menu_id])
+    @dish.update(dish_params)
     restaurant = @menu.restaurant
     authorize @dish
     if @dish.save

@@ -3,14 +3,10 @@ class DishAdder
     dish_array.each do |line|
       name = line[0]
       price = self.parse_price(line[1])
-      dish = Dish.new(
+      Dish.create(
         name: name,
-        price: price
-        )
-      dish.save
-      Entry.create(
-        menu: menu,
-        dish: dish
+        price: price,
+        menu: menu
         )
     end
   end
