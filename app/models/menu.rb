@@ -5,6 +5,7 @@ class Menu < ApplicationRecord
   validates :currency, :photos, presence: true
   after_create_commit :transcribe_text
   has_many_attached :photos
+  accepts_nested_attributes_for :dishes
 
   private
   def transcribe_text

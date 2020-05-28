@@ -1,29 +1,52 @@
 <div class="row mt-5">
-  <div class="col">
+  <div class="col-12">
     <h1>Review Menu</h1>
+  </div>
+  <div class="col-12">
+    <p>Click on a menu item's name or price to edit it. Press Enter to save.</p>
   </div>
 </div>
 
 <div class="row align-items-center">
-  <div class="col-8">
-    <ul class="list-group dishes-list">
-    <% @menu.dishes.order(:created_at).each do |dish| %>
-      <li class="list-group-item d-flex justify-content-between align-items-center" data-controller="dishes">
-        <%= simple_form_for [@menu, dish], html: { class: 'hidden-form', data: { target: 'dishes.editForm'} }, remote: true do |f| %>
-          <%= f.input :name, label: false, input_html: { data: { target: 'dishes.nameForm', action: 'keypress->dishes#submitOnEnter'} } %>
-          <%= f.input :price, label: false, input_html: { data: { target: 'dishes.priceForm', action: 'keypress->dishes#submitOnEnters'} } %>
-          <%= f.button :submit, class: 'hidden-form', data: { target: 'dishes.submitButton' } %>
-        <% end %>
+  <div class="col-12 col-lg-8">
+    <ul class="list-group">
+      <%= simple_form_for [@menu.restaurant, @menu], remote: true do |m| %>
+        <%= m.simple_fields_for :dishes do |d|%>
+        <% if d.object.id %>
+        <li class="dish list-group-item d-flex align-items-center" data-controller="dish">
+          <div class="d-flex justify-content-between w-100 hidden" data-target="dish.formBox">
+            <%= d.input :name, label: false, input_html: { data: { target: 'dish.nameForm'} } %>
+            <%= d.input :price, label: false, input_html: { size: 5, data: { target: 'dish.priceForm'} } %>
+          </div>
+          <div class="d-flex justify-content-between w-100">
+            <span data-target="dish.name" data-action="click->dish#showForm">
+              <%= d.object.name %>
+            </span>
+            <span data-target="dish.price" data-action="click->dish#showForm">
+              <%= d.object.price %>
+            </span>
+          </div>
 
-        <div class="d-flex justify-content-between w-100" data-target="dishes.info">
-          <div data-action="click->dishes#showEditForm" data-target="dishes.name"><%= dish.name %></div>
-          <div data-action="click->dishes#showEditForm" data-target="dishes.price">$<%= dish.price.to_f / 100 %></div>
-        </div>
-        <%= link_to dish_path(dish), class: 'ml-3', method: :delete, remote: true do %>
-        <i class="fas fa-minus-circle"></i>
+            <%= link_to dish_path(d.object), class: 'ml-3', method: :delete, remote: true do %>
+              <i class="fas fa-minus-circle"></i>
+            <% end %>
+
+
+        </li>
         <% end %>
-      </li>
-    <% end %>
+        <% end %>
+        <li class="dish list-group-item d-flex align-items-center" data-controller="dish">
+          <%= m.simple_fields_for :dishes, @menu.dishes.build do |d| %>
+            <div class="d-flex justify-content-between w-100">
+              <%= d.input :name, label: false, input_html: { placeholder: 'Add dish name', data: { target: 'dish.nameForm'} } %>
+              <%= d.input :price, label: false, input_html: { placeholder: 'Add price', data: { target: 'dish.priceForm'} } %>
+            </div>
+          <% end %>
+        </li>
+        <%= m.submit "Update", class: "hidden" %>
+      <% end %>
+
+    </ul>
 
   </div>
 
