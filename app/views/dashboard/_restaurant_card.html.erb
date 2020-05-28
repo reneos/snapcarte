@@ -5,9 +5,9 @@
       <div class="card-body mb-3">
         <h2><%= restaurant.name %></h2>
         <p> Cuisine: <%= restaurant.cuisine %></p>
-        <%= link_to 'check', restaurants_path, class: "rest-btn btn btn-primary"%>
-        <%= link_to 'menu',  restaurant_menu_path, class: "rest-btn btn btn-primary"%>
-        <%= link_to 'add menu', restaurant_menus_path, class: "rest-btn btn btn-primary" %>
+        <%= link_to 'check', restaurant_path(restaurant), class: "rest-btn btn btn-primary"%>
+        <%= link_to 'menu',  restaurant_menu_path(restaurant, restaurant.menus.first), class: "rest-btn btn btn-primary"%>
+        <%= link_to 'add menu', "#", class: "rest-btn btn btn-primary" %>
       </div>
     </div>
      <% end %>
