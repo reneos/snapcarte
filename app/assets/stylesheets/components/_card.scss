@@ -1,3 +1,9 @@
-.card-restaurant {
-  box-shadow: 5px 5px 5px #e4e4e4;
+.card-body {
+   box-shadow: 2px 2px 2px #e4e4e4;
+   background-color: $dark-yellow;
+   border-radius: 4px;
+}
+.card {
+  background-color: #FBF7ED;
+  border: none;
 }
