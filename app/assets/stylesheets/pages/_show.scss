@@ -8,7 +8,7 @@
     color: white;
   }
 }
-.container {
+.header {
   h1 {
     color: $light-grey;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -30,15 +30,11 @@
   width: 100%;
 }
 
-.restaurant-show-information {
-  background-color: $light-grey;
-}
-
 .restaurant-show-right-column {
   position: relative;
 }
-.row {
-  background-color: #FBF7ED;
+.restaurant-show-information {
+  background-color: $light-grey;
   margin-top: -100px
 }
 .jumbotron {

@@ -1,7 +1,7 @@
 </div><!-- close container -->
 
 <div class="jumbotron space-show-header" style="background-image: linear-gradient(to top, rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 100%), url(<%= cl_image_path @restaurant.photo.key, crop: :fill %>)">
-  <div class="container">
+  <div class="container header">
     <h1 class="display-4"><%= @restaurant.name %></h1>
     <h3 class="address"><i class="fas fa-map-pin"></i> <%= @restaurant.address %></h3>
   </div>
@@ -9,7 +9,7 @@
 
 <div class="container">
 
-<div class="row space-show-information">
+<div class="row restaurant-show-information">
   <div class="col-12 col-md-8 col-lg-8 mb-5">
     <div class="container pt-4">
           <h2>Description</h2>
