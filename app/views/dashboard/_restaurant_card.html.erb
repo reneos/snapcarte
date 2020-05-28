@@ -1,21 +1,18 @@
   <div class="d-flex justify-content-between align-items-center">
 <div class="col-12 col-md-6">
-  <div class="card border-dark mb-3">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <ul>
-        <% @restaurants.each do |restaurant| %>
-        <li><%= restaurant.name %></li>
-        <li><%= restaurant.cuisine %></li>
-        <li><%= link_to 'check', restaurants_path %></li>
-        <li><%= link_to 'menu', restaurants_path %></li>
-        <li><%= link_to 'add menu', restaurants_path %></li>
-      <% end %>
-      </ul>
-
+  <% @restaurants.each do |restaurant| %>
+    <div class="card">
+      <div class="card-body">
+        <h2><%= restaurant.name %></h2>
+        <%= restaurant.cuisine %>
+        <%= link_to 'check', restaurants_path, class: "btn btn-primary"%>
+        <%= link_to 'menu', restaurants_path, class: "btn btn-primary"%>
+        <%= link_to 'add menu', restaurants_path, class: "btn btn-primary"  %>
+      </div>
     </div>
+     <% end %>
      </div>
     </div>
-  </div>
 
 
 
