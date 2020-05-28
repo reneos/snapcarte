@@ -1,7 +1,7 @@
 <h1>Your Restaurant</h1>
   <% if @restaurants.empty? %>
     <div class="col-12">
-      <p>You haven't booked any spaces yet. <%= link_to "View all spaces.", spaces_path %></p>
+      <p>You haven't booked any spaces yet. <%= link_to "View others.", restaurants_path %></p>
     </div>
   <% else %>
   <% end %>
