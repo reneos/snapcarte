@@ -2,7 +2,7 @@
 class Menu < ApplicationRecord
   belongs_to :restaurant
   has_many :dishes, dependent: :destroy
-  validates :currency, :photos, presence: true
+  validates :photos, presence: true
   after_create_commit :transcribe_text
   has_many_attached :photos
   accepts_nested_attributes_for :dishes
