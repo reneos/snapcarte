@@ -13,6 +13,10 @@
     color: $light-grey;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   }
+  .fa-map-pin {
+  color: $light-grey;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
 }
 
 .address {
@@ -21,10 +25,6 @@
 
 }
 
-.fa-map-pin {
-  color: $light-grey;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
 
 .restaurant-show-img {
   width: 100%;

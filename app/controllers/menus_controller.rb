@@ -8,7 +8,7 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     authorize @menu
     if @menu.update(menu_params)
-      redirect_to edit_restaurant_menu_path(@menu.restaurant, @menu)
+      redirect_to edit_restaurant_menu_path(@menu.restaurant, @menu), flash: {notice: "Restaurant successfully created!" }
     else
       render :edit
     end

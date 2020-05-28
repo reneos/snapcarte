@@ -1,6 +1,8 @@
 .alert {
   position: fixed;
-  bottom: 16px;
+  top: 72px;
   right: 16px;
   z-index: 1000;
+  // box-shadow: 2px 2px 2px #a39887;
+  border: solid 1px #a39887;
 }
