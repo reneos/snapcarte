@@ -21,6 +21,11 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def update
+    raise
+
+  end
+
   private
 
   def restaurant_params

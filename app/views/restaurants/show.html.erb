@@ -2,6 +2,7 @@
   <h1 class="text-center"><i class="fas fa-chart-line"></i> @restaurant.name</h1>
   <h2 class='mt-5'><i class="fas fa-utensils"></i> <%= @restaurant.name %></h2>
   <div class="info-restaurant">
+    <%= render 'open_close_button', restaurant: @restaurant %>
     <div class="col-12 col-md-8 mt-5 mb-5 ">
       <h3 class=""><i class="fas fa-info-circle"></i> Restaurant details</h3>
       <ul class="mb-3">Restaurant address: <%= @restaurant.address %></ul>
@@ -10,6 +11,8 @@
     </div>
   </div>
 <h2><i class="fas fa-list-ul"></i> Your menus</h2>
+
+
 
 
 <div class="info-restaurant">

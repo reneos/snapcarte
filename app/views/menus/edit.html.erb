@@ -1,9 +1,9 @@
 <div class="row mt-5">
   <div class="col-12">
-    <h1>Review Menu</h1>
+    <h1>Confirm Menu</h1>
   </div>
   <div class="col-12">
-    <p>Click on a menu item's name or price to edit it. Press Enter to save.</p>
+    <p>Click on a menu item's name or price to edit it, then press Enter to save.</p>
   </div>
 </div>
 
@@ -49,6 +49,8 @@
     </ul>
 
   </div>
-
+  <div class="col-12">
+    <%= link_to "Continue to restaurant preview", restaurant_path(@menu.restaurant), class: 'btn btn-primary' %>
+  </div>
 </div>
 

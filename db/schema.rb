@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_022412) do
+ActiveRecord::Schema.define(version: 2020_05_28_040210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 2020_05_28_022412) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
+  create_table "operation_times", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.time "start_time"
+    t.time "end_time"
+    t.string "day"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_operation_times_on_restaurant_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "address"
     t.string "name"
@@ -64,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_05_28_022412) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.text "description"
+    t.boolean "open", default: false
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
@@ -82,5 +93,6 @@ ActiveRecord::Schema.define(version: 2020_05_28_022412) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "dishes", "menus"
   add_foreign_key "menus", "restaurants"
+  add_foreign_key "operation_times", "restaurants"
   add_foreign_key "restaurants", "users"
 end

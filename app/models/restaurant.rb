@@ -4,4 +4,8 @@ class Restaurant < ApplicationRecord
   validates :address, :name, :phone_number, :cuisine, :description, :photo, presence: true
   accepts_nested_attributes_for :menus
   has_one_attached :photo
+
+  def status
+    open ? "open" : "closed"
+  end
 end
