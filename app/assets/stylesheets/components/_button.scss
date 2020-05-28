@@ -1,3 +1,10 @@
 .button {
   border-radius: 10px;
 }
+.rest-btn {
+  background-color: #FBF7ED;
+  color: $bright-red;
+}
+.rest-btn :hover {
+  background-color: $dark-yellow;
+}

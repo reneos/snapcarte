@@ -50,3 +50,14 @@
     color: $bright-red;
   }
 }
+.nav-link {
+  color: $bright-red;
+}
+
+.nav-pills .nav-link.active {
+  background-color: $dark-yellow;
+  color: $bright-red;
+}
+.nav {
+  background-color: $dark-yellow;
+}
