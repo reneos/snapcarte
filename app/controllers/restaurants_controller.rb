@@ -22,8 +22,11 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    raise
-
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.open = !@restaurant.open
+    authorize @restaurant
+    @restaurant.save
+    redirect_to restaurant_path(@restaurant)
   end
 
   private
