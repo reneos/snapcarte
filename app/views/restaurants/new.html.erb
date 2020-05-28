@@ -1,5 +1,5 @@
   <div class="container">
-  <h1 class="text-monospace d-flex justify-content-center"><strong>Create restaurant</strong></h1>
+    <h1 class="d-flex justify-content-center create"><strong>Create restaurant</strong></h1>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 mt-5">
       <%= simple_form_for @restaurant, remote: true do |f| %>
@@ -7,6 +7,8 @@
       <%= f.input :address, label: ('<i class="fas fa-map-pin"></i> Address').html_safe %>
       <%= f.input :phone_number, label: ('<i class="fas fa-phone"></i> Phone_number').html_safe %>
       <%= f.input :cuisine, label: ('<i class="fas fa-utensils"></i> Cuisine').html_safe %>
+      <%= f.input :description, label: ('<i class="fas fa-pen"></i></i> Description').html_safe %>
+      <%= f.input :photo, as: :file, label: ('Upload restaurant photo').html_safe %>
       <%= f.simple_fields_for :menus do |m|%>
       <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
       <% end %>
