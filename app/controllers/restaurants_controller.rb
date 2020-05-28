@@ -1,6 +1,9 @@
 class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
+    @markers = [{ lat: @restaurant.latitude,
+                lng: @restaurant.longitude
+              }]
     authorize @restaurant
   end
 
@@ -21,9 +24,17 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def update
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.open = !@restaurant.open
+    authorize @restaurant
+    @restaurant.save
+    redirect_to restaurant_path(@restaurant)
+  end
+
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :address, :phone_number, :cuisine, menus_attributes: [:currency, :photos])
+    params.require(:restaurant).permit(:description, :photo, :name, :address, :phone_number, :cuisine, menus_attributes: [:currency, :photos])
   end
 end

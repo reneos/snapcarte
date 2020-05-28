@@ -1,0 +1,81 @@
+.restaurant-show-header {
+  height: 56vh;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  text-shadow: 1px 1px 0px #16302b96;
+  h3 {
+    color: white;
+  }
+}
+.header {
+  h1 {
+    color: $light-grey;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+}
+
+.address {
+  color: $light-grey;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+
+}
+
+.fa-map-pin {
+  color: $light-grey;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.restaurant-show-img {
+  width: 100%;
+}
+
+.restaurant-show-right-column {
+  position: relative;
+}
+.restaurant-show-information {
+  background-color: $light-grey;
+  margin-top: -100px
+}
+.jumbotron {
+  height: 40vh;
+  background-attachment: fixed;
+}
+
+@include media-breakpoint-up(md) {
+  .restaurant-show-information {
+    margin-top: -20vh;
+  }
+}
+
+
+@include media-breakpoint-down(md) {
+  .restaurant-show-pricing {
+    font-size: .8em;
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    right: -50px;
+  }
+  .pricing {
+    font-size: 1.7em;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .restaurant-show-pricing {
+    position: static;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 3em;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+    color: green;
+    background-color: transparent;
+    border: 1px solid green;
+  }
+}
+
+
+

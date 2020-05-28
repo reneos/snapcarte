@@ -1,48 +1,38 @@
+</div><!-- close container -->
+
+<div class="jumbotron space-show-header" style="background-image: linear-gradient(to top, rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 100%), url(<%= cl_image_path @restaurant.photo.key, crop: :fill %>)">
+  <div class="container header">
+    <h1 class="display-4"><%= @restaurant.name %></h1>
+    <h3 class="address"><i class="fas fa-map-pin"></i> <%= @restaurant.address %></h3>
+  </div>
+</div>
+
 <div class="container">
-  <h1 class="text-center"><i class="fas fa-chart-line"></i> Dashboard</h1>
-  <h2 class='mt-5'><i class="fas fa-utensils"></i> <%= @restaurant.name %></h2>
-  <div class="info-restaurant">
-    <div class="col-12 col-md-8 mt-5 mb-5 ">
-      <h3 class=""><i class="fas fa-info-circle"></i> Restaurant details</h3>
-      <ul class="mb-3">Restaurant address: <%= @restaurant.address %></ul>
-      <ul class="mb-3">Phone number: <%= @restaurant.phone_number %></ul>
-      <ul class="mb-3">Cuisine: <%= @restaurant.cuisine %></ul>
+
+<div class="row restaurant-show-information">
+  <div class="col-12 col-md-8 col-lg-8 mb-5">
+    <div class="container pt-4">
+          <h2>Description</h2>
+    <p><%= @restaurant.description %></p>
+    <p><%= @restaurant.phone_number %></p>
+    <h2 class="mt-5">Menu</h2>
+    <%= cl_image_tag @restaurant.photo.key, alt: @restaurant.name, crop: :fill, class: "restaurant-show-img" %>
     </div>
+
   </div>
-<h2><i class="fas fa-list-ul"></i> Your menus</h2>
 
+  <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 
-<div class="info-restaurant">
-<table class="table table-bordered table-secondary col-12 col-md-8 mt-2 mb-5">
-  <thead >
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
+  <div class="col-12 col-md-4 col-lg-4 restaurant-show-right-column">
+    <div class="container pt-4">
+      <div class="restaurant-show-pricing"></div>
+      <h2>Order</h2>
+    </div>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><i class="far fa-edit"></i> <%= link_to 'Edit menu', restaurant_menu_path(@restaurant) %></td>
+  </div>
 
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td><i class="far fa-edit"></i> <%= link_to 'Edit menu', restaurant_menu_path(@restaurant) %></td>
-
-    </tr>
-  </tbody>
-</table>
 </div>
-  <h2><i class="far fa-edit"></i> Restaurant Description</h2>
-<div class="form-group">
-    <label for="exampleFormControlTextarea1">Edit your restaurant description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    <button type="submit" class="btn btn-warning mt-1 mb-2">Edit</button>
-  </div>
-  <div class="btn btn-warning btn-block text-decoration-none mt-5 mb-5">
-    <%= link_to 'Go back', restaurants_path %>
-  </div>
-</div>
+
+
 
