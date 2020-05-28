@@ -8,7 +8,6 @@
       <%= f.input :phone_number, label: ('<i class="fas fa-phone"></i> Phone_number').html_safe %>
       <%= f.input :cuisine, label: ('<i class="fas fa-utensils"></i> Cuisine').html_safe %>
       <%= f.simple_fields_for :menus do |m|%>
-      <%= m.input :currency, collection: Money::Currency._instances.keys.map(&:upcase), input_html:{class: "select2"}, label: ('<i class="fas fa-yen-sign"></i> Currency').html_safe %>
       <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
       <% end %>
       <div class="mt-4 mb-5">
