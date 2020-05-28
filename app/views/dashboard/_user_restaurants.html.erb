@@ -1,0 +1,14 @@
+<div class="row mb-5">
+      <% if @restaurants.empty? %>
+        <div class="col-12">
+          <p>You haven't booked any spaces yet. <%= link_to "View all spaces.", spaces_path %></p>
+        </div>
+      <% else %>
+        <% @restaurants.each do |restaurant| %>
+        <ul>
+          <li><%= restaurant.name %></li>
+        </ul>
+        <%= render 'restaurant_card' %>
+        <% end %>
+      <% end %>
+  </div>
