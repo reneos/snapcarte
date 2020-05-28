@@ -3,8 +3,8 @@ class Dish < ApplicationRecord
   belongs_to :menu
 
   def pricetag
-    float_price = "#{price.to_f / 100}"
-    float_price += float_price.match?(/\.\d$/) ? "0" : ""
-    "$#{float_price}"
+    string_price = "$#{price}"
+    string_price += string_price.match?(/\.\d$/) ? "0" : ""
+    string_price
   end
 end
