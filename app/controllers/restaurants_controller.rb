@@ -18,7 +18,7 @@ class RestaurantsController < ApplicationController
     @restaurant.user = current_user
     authorize @restaurant
     if @restaurant.save
-      redirect_to edit_restaurant_menu_path(@restaurant, @restaurant.menus.first)
+      redirect_to edit_restaurant_menu_path(@restaurant, @restaurant.menus.first), flash: {notice: "Congratulations! Restaurant and menu successfully created." }
     else
       render :new
     end
