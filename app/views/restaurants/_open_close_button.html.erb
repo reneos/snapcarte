@@ -1,0 +1,4 @@
+<% if policy(restaurant).update? %>
+<% btn_text = restaurant.open ? "close restaurant" : "open restaurant" %>
+<%= link_to btn_text, restaurant_path(restaurant), method: :patch, remote: true %>
+<% end %>
