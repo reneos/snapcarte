@@ -66,6 +66,6 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 gem 'turbolinks_render'
 gem 'faker'
-gem 'money-rails', '~>1.12'
+gem 'geocoder'
 
 
