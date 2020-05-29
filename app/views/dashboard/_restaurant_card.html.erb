@@ -2,11 +2,17 @@
 
 
   <div class="card-body">
+
     <h2><%= restaurant.name %></h2>
+    <% if restaurant.open == true %>
+        <span class="badge badge-pill badge-success">Open</span>
+      <% elsif %>
+        <span class="badge badge-pill badge-danger">Closed</span>
+    <% end %>
 
     <div><%= link_to 'View restaurant', restaurant_path(restaurant), class: "btn btn-primary"%></div>
     <div><%= link_to 'Edit restaurant', "#", class: "btn btn-primary"  %></div>
-    <div><%= link_to 'Edit Menu',  restaurant_menu_path(restaurant, restaurant.menus.first), class: "btn btn-primary"%></div>
+    <div><%= link_to 'Edit Menu',  edit_restaurant_menu_path(restaurant, restaurant.menus.first), class: "btn btn-primary"%></div>
 
   </div>
    <%= cl_image_tag restaurant.photo.key, class: 'restaurant-card-img' %>

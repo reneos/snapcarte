@@ -1,7 +1,7 @@
 
   <% if @restaurants.empty? %>
     <div class="col-12">
-      <p>You haven't booked any spaces yet. <%= link_to "Add a restaurant", new_restaurant_path %></p>
+      <p>You haven't added any restaurants yet. <%= link_to "Add a restaurant", new_restaurant_path %></p>
     </div>
   <% else %>
     <% @restaurants.each do |restaurant| %>

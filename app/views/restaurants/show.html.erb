@@ -43,7 +43,7 @@
 
     <div class="col-12">
       <ul class="list-group w-100 restaurant-menu">
-        <% @restaurant.menus.first.dishes.each do |dish| %>
+        <% @restaurant.menus.first.dishes.order(:created_at).each do |dish| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span><%= dish.name %></span>
             <span><%= dish.pricetag %></span>
