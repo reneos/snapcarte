@@ -1,10 +1,17 @@
   <% if policy(@restaurant).edit? %>
     <div class="row mt-3">
       <div class="top-notice text-center">
-        <p>Welcome to your restaurant page! Your restaurant is now visible in customer searches.</p>
-        <p>Ready to open and start accepting orders?</p>
-        <%= render 'open_close_button', restaurant: @restaurant %>
+        <% if !@restaurant.open %>
+          <p>Ready to open and start accepting orders?</p>
+          <%= render 'open_close_button', restaurant: @restaurant %>
+        <% else %>
+          <p>Your restaurant is open!</p>
+          <p>Check out your dashboard to see your order information.</p>
+
+        <% end %>
         <%= link_to "Check out dashboard", dashboard_index_path, class: "btn btn-primary"  %>
+
+
       </div>
     </div>
   <% end %>

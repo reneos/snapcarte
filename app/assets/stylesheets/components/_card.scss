@@ -1,9 +1,22 @@
 .card-body {
-   box-shadow: 2px 2px 2px #e4e4e4;
-   background-color: $dark-yellow;
-   border-radius: 4px;
+
+  border-radius: 10px 0 0 10px;
+  width: 60%;
 }
 .card {
-  background-color: #FBF7ED;
   border: none;
+}
+
+.restaurant-card {
+  background-color: white;
+  box-shadow: 0 0 10px #e4dfd4;
+  border-radius: 10px;
+}
+
+.restaurant-card-img {
+  width: 40%;
+  border-radius: 0 10px 10px 0;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
 }
