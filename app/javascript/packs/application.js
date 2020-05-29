@@ -29,6 +29,7 @@ import { initMapbox } from '../components/init_mapbox';
 import { initFileUpload } from '../components/initFileUpload';
 
 
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -39,4 +40,6 @@ document.addEventListener('turbolinks:load', () => {
   initFileUpload();
 });
 
-import "controllers"
+import "controllers";
+
+
