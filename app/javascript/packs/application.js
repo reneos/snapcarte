@@ -33,7 +33,7 @@ import { initMapbox } from '../components/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  // initSelect2()
   initSelect2();
   initMapbox();
 });
