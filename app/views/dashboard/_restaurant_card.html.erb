@@ -1,17 +1,15 @@
-  <div class="d-flex justify-content-between align-items-center">
-<div class="col-12 col-md-6">
-  <% @restaurants.each do |restaurant| %>
-    <div class="card">
-      <div class="card-body mb-3">
-        <h2><%= restaurant.name %></h2>
-        <p> Cuisine: <%= restaurant.cuisine %></p>
-        <%= link_to 'check', restaurant_path(restaurant), class: "rest-btn btn btn-primary"%>
-        <%= link_to 'menu',  restaurant_menu_path(restaurant, restaurant.menus.first), class: "rest-btn btn btn-primary"%>
-        <%= link_to 'add menu', "#", class: "rest-btn btn btn-primary" %>
-      </div>
-    </div>
-     <% end %>
-     </div>
-    </div>
+<div class="mb-3 d-flex restaurant-card">
 
+
+  <div class="card-body">
+    <h2><%= restaurant.name %></h2>
+
+    <div><%= link_to 'View restaurant', restaurant_path(restaurant), class: "btn btn-primary"%></div>
+    <div><%= link_to 'Edit restaurant', "#", class: "btn btn-primary"  %></div>
+    <div><%= link_to 'Edit Menu',  restaurant_menu_path(restaurant, restaurant.menus.first), class: "btn btn-primary"%></div>
+
+  </div>
+   <%= cl_image_tag restaurant.photo.key, class: 'restaurant-card-img' %>
+
+</div>
 
