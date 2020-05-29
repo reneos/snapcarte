@@ -34,7 +34,6 @@ import { initFileUpload } from '../components/initFileUpload';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2()
   initSelect2();
   initMapbox();
   initFileUpload();

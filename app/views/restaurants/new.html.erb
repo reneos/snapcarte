@@ -10,6 +10,8 @@
       <%= f.input :description, label: ('<i class="fas fa-pen"></i></i> Description').html_safe %>
       <div class="mb-3 instruction">Write a short description of your restaurant and let customers know your general hours for accepting orders.</div>
       <%= f.input :photo, as: :file, label: ('Upload restaurant photo').html_safe %>
+      <div class="mb-3 instruction">Write a short description of your restaurant and let customers know your general hours for accepting orders.</div>
+      <h2>Menu</h2>
       <%= f.simple_fields_for :menus do |m|%>
       <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
       <div class="mb-3 instruction">Upload a photo of your menu and Snapcarte will digitize it. You can confirm your dish names and prices on the next page.</div>
