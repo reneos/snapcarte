@@ -17,7 +17,7 @@
       <div class="mb-3 instruction">Upload a photo of your menu and Snapcarte will digitize it. You can confirm your dish names and prices on the next page.</div>
       <% end %>
       <div class="mt-4 mb-5">
-        <%= f.submit 'Create restaurant', class:"btn btn-primary"%>
+        <%= f.submit 'Create restaurant', class:"btn btn-primary", data: { disable_with: " Please wait a moment, creating dishes..." }%>
       </div>
     <% end %>
     </div>
