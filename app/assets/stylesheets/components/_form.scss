@@ -21,6 +21,7 @@ label.file {
   background-color: white;
   border: 1px solid $bright-red;
   border-radius: 10px;
+  margin-bottom: 0;
   color: $bright-red;
   &:hover {
     cursor: pointer;
@@ -28,6 +29,7 @@ label.file {
 }
 
 .instruction {
+  margin-top: 8px;
   border-bottom: 1px dotted $grey;
   padding-bottom: 8px;
   font-size: .8em;
