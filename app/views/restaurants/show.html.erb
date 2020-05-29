@@ -27,18 +27,20 @@
 
 
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 d-flex align-items-center">
       <ul class="list-group w-100 restaurant-info">
         <li class="list-group-item"><span class="icon"><i class="fas fa-map-pin mr-3"></i></span> <%= @restaurant.address %></li>
         <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= @restaurant.cuisine %></li>
         <li class="list-group-item"><i class="fas fa-phone mr-3"></i> <%= @restaurant.phone_number %></li>
       </ul>
-      <p><%= @restaurant.description %></p>
-      <p></p>
     </div>
 
     <div class="col-12 col-md-6">
       <%= cl_image_tag @restaurant.photo.key, alt: "alttext", crop: :fill, class: "restaurant-img" %>
+    </div>
+
+    <div class="col-12 mt-3">
+      <p><%= @restaurant.description %></p>
     </div>
 
     <div class="col-12">
