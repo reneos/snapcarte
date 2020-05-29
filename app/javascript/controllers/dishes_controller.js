@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "editForm", "submitButton", "name", "price", "nameForm", "priceForm", "info" ]
+  static targets = [ "submitButton"]
 
 
 

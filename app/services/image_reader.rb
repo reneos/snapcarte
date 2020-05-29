@@ -8,7 +8,7 @@ require 'base64'
 class ImageReader
   def self.transcribe(image_key)
     puts "Getting image url"
-   image_url = "https://res.cloudinary.com/dyam1xame/image/upload/e_contrast:100/e_blackwhite/" + image_key
+   image_url = "https://res.cloudinary.com/dyam1xame/image/upload/e_contrast:100/e_grayscale/" + image_key
    image = open(image_url).read
    puts "Read the image"
    encoded = Base64.encode64(image)
@@ -45,8 +45,7 @@ class ImageReader
    puts "Made the request and received body"
 
    text = data['responses'][0]['textAnnotations'][0]['description']
-   text = text.delete("$").gsub(/(\R+|\.{2,})/,' ').gsub(/\s+/,' ').gsub(/\s\./, ' ')
-
+   text = text.delete("$").gsub(/(\R+|\.{2,})/,' ').gsub(/\s+/,' ').gsub(/(?<=\d)\.($|\s)/, ' ').gsub(/\s\./, ' ')
    puts "Stripped text"
 
    # pattern = /(?<dish>.*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
