@@ -1,38 +1,65 @@
+  <% if policy(@restaurant).edit? %>
+    <div class="row mt-3">
+      <div class="top-notice text-center">
+        <p>Welcome to your restaurant page! Your restaurant is now visible in customer searches.</p>
+        <p>Ready to open and start accepting orders?</p>
+        <%= render 'open_close_button', restaurant: @restaurant %>
+        <%= link_to "Check out dashboard", dashboard_index_path, class: "btn btn-primary"  %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row restaurant-show-information mt-5 pt-3">
+    <div class="col-12 d-flex align-items-center justify-content-between">
+      <h1><%= @restaurant.name %></h1>
+      <span class="restaurant-status badge badge-<%= @restaurant.open ? "success" : "warning" %>">
+      <%= @restaurant.status %>
+      </span>
+    </div>
+
+
+
+
+    <div class="col-12 col-md-6">
+      <ul class="list-group w-100 restaurant-info">
+        <li class="list-group-item"><span class="icon"><i class="fas fa-map-pin mr-3"></i></span> <%= @restaurant.address %></li>
+        <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= @restaurant.cuisine %></li>
+        <li class="list-group-item"><i class="fas fa-phone mr-3"></i> <%= @restaurant.phone_number %></li>
+      </ul>
+      <p><%= @restaurant.description %></p>
+      <p></p>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <%= cl_image_tag @restaurant.photo.key, alt: "alttext", crop: :fill, class: "restaurant-img" %>
+    </div>
+
+    <div class="col-12">
+      <ul class="list-group w-100 restaurant-menu">
+        <% @restaurant.menus.first.dishes.each do |dish| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><%= dish.name %></span>
+            <span><%= dish.pricetag %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+    <div id="map" class="mt-4" style="height: 200px; width: 100%;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
+</div>
+
+
 </div><!-- close container -->
 
-<div class="jumbotron space-show-header" style="background-image: linear-gradient(to top, rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 100%), url(<%= cl_image_path @restaurant.photo.key, crop: :fill %>)">
-  <div class="container header">
-    <h1 class="display-4"><%= @restaurant.name %></h1>
-    <h3 class="address"><i class="fas fa-map-pin"></i> <%= @restaurant.address %></h3>
-  </div>
-</div>
 
-<div class="container">
 
-<div class="row restaurant-show-information">
-  <div class="col-12 col-md-8 col-lg-8 mb-5">
-    <div class="container pt-4">
-          <h2>Description</h2>
-    <p><%= @restaurant.description %></p>
-    <p><%= @restaurant.phone_number %></p>
-    <h2 class="mt-5">Menu</h2>
-    <%= cl_image_tag @restaurant.photo.key, alt: @restaurant.name, crop: :fill, class: "restaurant-show-img" %>
-    </div>
 
-  </div>
 
-  <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
 
-  <div class="col-12 col-md-4 col-lg-4 restaurant-show-right-column">
-    <div class="container pt-4">
-      <div class="restaurant-show-pricing"></div>
-      <h2>Order</h2>
-    </div>
 
-  </div>
-
-</div>
 
 
 

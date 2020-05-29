@@ -6,3 +6,29 @@
   font-family: $headers-font;
   margin-top: 16px;
 }
+
+.form-control-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+label.file {
+  padding: 8px 12px;
+  background-color: white;
+  border: 1px solid $bright-red;
+  border-radius: 10px;
+  color: $bright-red;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.instruction {
+  border-bottom: 1px dotted $grey;
+  padding-bottom: 8px;
+  font-size: .8em;
+}

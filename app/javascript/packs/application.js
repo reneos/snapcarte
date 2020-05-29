@@ -26,6 +26,7 @@ require("channels")
 import "bootstrap";
 import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../components/init_mapbox';
+import { initFileUpload } from '../components/initFileUpload';
 
 
 // Internal imports, e.g:
@@ -33,9 +34,9 @@ import { initMapbox } from '../components/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
   initSelect2();
   initMapbox();
+  initFileUpload();
 });
 
 import "controllers"

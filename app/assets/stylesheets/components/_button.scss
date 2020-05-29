@@ -8,3 +8,11 @@
 .rest-btn :hover {
   background-color: $dark-yellow;
 }
+
+.btn-primary {
+  background-color: darken($dark-yellow, 15%);
+  border: none;
+  &:hover, &:active {
+    background-color: darken($dark-yellow, 25%);
+  }
+}
