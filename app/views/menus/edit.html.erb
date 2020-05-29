@@ -11,8 +11,8 @@
   <div class="col-12 col-lg-8">
     <ul class="list-group">
       <%= simple_form_for [@menu.restaurant, @menu], remote: true do |m| %>
-        <%= m.simple_fields_for :dishes do |d|%>
-        <% if d.object.id %>
+        <%= m.simple_fields_for :dishes, @menu.dishes.order(:created_at) do |d|%>
+
         <li class="dish list-group-item d-flex align-items-center" data-controller="dish">
           <div class="d-flex justify-content-between w-100 hidden" data-target="dish.formBox">
             <%= d.input :name, label: false, input_html: { data: { target: 'dish.nameForm'} } %>
@@ -34,15 +34,7 @@
 
         </li>
         <% end %>
-        <% end %>
-        <li class="dish list-group-item d-flex align-items-center" data-controller="dish">
-          <%= m.simple_fields_for :dishes, @menu.dishes.build do |d| %>
-            <div class="d-flex justify-content-between w-100">
-              <%= d.input :name, label: false, input_html: { placeholder: 'Add dish name', data: { target: 'dish.nameForm'} } %>
-              <%= d.input :price, label: false, input_html: { placeholder: 'Add price', data: { target: 'dish.priceForm'} } %>
-            </div>
-          <% end %>
-        </li>
+
         <%= m.submit "Update", class: "hidden" %>
       <% end %>
 
