@@ -9,14 +9,14 @@
 
 <div class="row align-items-center">
   <div class="col-12 col-lg-8">
-    <ul class="list-group">
+    <ul class="list-group" data-controller="dishes">
       <%= simple_form_for [@menu.restaurant, @menu], remote: true do |m| %>
         <%= m.simple_fields_for :dishes, @menu.dishes.order(:created_at) do |d|%>
 
         <li class="dish list-group-item d-flex align-items-center" data-controller="dish">
           <div class="d-flex justify-content-between w-100 hidden" data-target="dish.formBox">
-            <%= d.input :name, label: false, input_html: { data: { target: 'dish.nameForm'} } %>
-            <%= d.input :price, label: false, input_html: { size: 5, data: { target: 'dish.priceForm'} } %>
+            <%= d.input :name, label: false, input_html: { data: { target: 'dish.nameForm', action: 'keypress->dishes#submitOnEnter'} } %>
+            <%= d.input :price, label: false, input_html: { size: 5, data: { target: 'dish.priceForm', action: 'keypress->dishes#submitOnEnter'} } %>
           </div>
           <div class="d-flex justify-content-between w-100">
             <span data-target="dish.name" data-action="click->dish#showForm">
@@ -35,7 +35,7 @@
         </li>
         <% end %>
 
-        <%= m.submit "Update", class: "hidden" %>
+        <%= m.submit "Update", class: "hidden", data: { target: 'dishes.submitButton'} %>
       <% end %>
 
     </ul>
