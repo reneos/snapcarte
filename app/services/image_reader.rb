@@ -49,9 +49,9 @@ class ImageReader
 
    puts "Stripped text"
 
-   pattern = /(?<dish>.*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
+   # pattern = /(?<dish>.*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
+   pattern = /(?<dish>[a-zA-Z].*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
    scanned = text.scan(pattern)
-
    puts "Scanned text"
    scanned
   end
