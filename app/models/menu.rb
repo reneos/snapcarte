@@ -9,8 +9,8 @@ class Menu < ApplicationRecord
 
   private
   def transcribe_text
-    image_key = self.photos.first.key
-    dish_array = ImageReader.transcribe(image_key)
+    url = self.photos.first.service_url
+    dish_array = ImageReader.transcribe(url)
     DishAdder.call(dish_array, self)
   end
 
