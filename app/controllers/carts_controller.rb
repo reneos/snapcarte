@@ -1,5 +1,11 @@
 class CartsController < ApplicationController
 
+  def add
+    @cart = Cart.create
+    @dish = Dish.find(params[:dish_id])
+    @cart.add(@dish, @dish.price)
+  end
+
   def create
     @cart = Cart.new
     @cart.restaurant = Cart.find(params[:restuaurant_id])

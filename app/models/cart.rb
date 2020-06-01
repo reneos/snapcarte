@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  belongs_to :restuaurant
+  belongs_to :restaurant
   has_many :orders
-  end
+  acts_as_shopping_cart_using :cart_item
 end
