@@ -20,27 +20,25 @@
         <%= f.button :button, 'Create restaurant', class:"btn btn-primary", data: {disable_with: "<div><i class='fa fa-spinner fa-spin'></i> Please wait a moment.</div><div>Scanning menu for dishes.</div>"} %>
       </div>
     <% end %>
-    <% restaurant_name = "ittoku boston" %>
-
-    <% url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{restaurant_name}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyABCOJ5LVA5s2oBTLYyqasWozQU1MeiI6Q" %>
-    <% place_serialized = open(url).read %>
-    <% place = JSON.parse(place_serialized) %>
-    <ul>
-      <li><%= "#{place['candidates'][0]['formatted_address']}" %></li>
-      <% puts "#{place['candidates'][0]['geometry']}" %>
-      <li><%= "#{place['candidates'][0]['name']}" %></li>
-      <li><%= "#{place['candidates'][0]['opening_hours']}" %></li>
-      <li><%= "#{place['candidates'][0]['rating']}" %></li>
-      <li></li>
-    </ul>
-
-
-
-
-
     </div>
   </div>
 </div>
+    <% name = 'Ittoku-Boston' %>
+    <% url = "https://www.tripadvisor.com/Restaurant_Review-g60745-d7920950-Reviews-Izakaya_#{name}_Massachusetts.html" %>
+    <% html_file = open(url).read %>
+      <% html_doc = Nokogiri::HTML(html_file) %>
+      <ul>
+        <li><%= html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip %></li>
+        <li><%= html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip %></li>
+        <li><%= html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip %></li>
+        <li><%= html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip %></li>
+        <li><%= html_doc.search('.yF-2QEPN').text.strip %></li>
+      </ul>
+
+
+
+
+
 
 
 
