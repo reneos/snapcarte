@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   resources :menus, only: [] do
     resources :dishes, only: [:update]
   end
+  resources :restuaurant, only: [] do
+    resources :orders, only: [:create]
+  end
+  resources :orders, only: [:destroy]
   resources :dishes, only: [:destroy]
   resources :dashboard, only: [:index]
-  #routes orders
-
 end
