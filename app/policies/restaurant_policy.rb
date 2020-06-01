@@ -16,4 +16,8 @@ class RestaurantPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def edit_menus?
+    record.user == user
+  end
 end

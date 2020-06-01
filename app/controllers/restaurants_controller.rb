@@ -18,8 +18,7 @@ class RestaurantsController < ApplicationController
     @restaurant.user = current_user
     authorize @restaurant
     if @restaurant.save
-      # redirect_to edit_restaurant_menu_path(@restaurant, @restaurant.menus.first), flash: {notice: "Congratulations! Restaurant and menu successfully created." }
-      redirect_to restaurant_path(@restaurant)
+      redirect_to edit_menus_restaurant_path(@restaurant)
     else
       render :new
     end
@@ -31,6 +30,12 @@ class RestaurantsController < ApplicationController
     authorize @restaurant
     @restaurant.save
     redirect_to restaurant_path(@restaurant)
+  end
+
+  def edit_menus
+    @restaurant = Restaurant.find(params[:id])
+    authorize @restaurant
+    @menus = @restaurant.menus
   end
 
   private
