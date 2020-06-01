@@ -2,7 +2,6 @@
 
 class ImageReader
   def self.transcribe(url)
-    # image_annotator = Google::Cloud::Vision::ImageAnnotator.new
     response = GoogleOCR.text_detection(
       image: url,
       max_results: 1
