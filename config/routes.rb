@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :restaurants, only: [:show, :new, :create, :update] do
     resources :menus, only: [:create, :edit, :update]
-    resources :carts, only: [:show, :create, :edit, :update]
+    resources :carts, only: [:create, :edit, :update, :add, :remove, :empty, :total]
     member do
       get 'edit_menus'
       patch 'update_menus'
@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   resources :menus, only: [] do
     resources :dishes, only: [:update]
   end
+  resources :restuaurant, only: [] do
+    resources :orders, only: [:create]
+  end
+  resources :orders, only: [:destroy]
   resources :dishes, only: [:destroy]
   resources :dashboard, only: [:index]
-  #routes orders
-
 end
