@@ -1,9 +1,23 @@
 const initCropper = () => {
-  Jcrop.attach('photo-preview',{
+  const coordsInput = document.querySelector('#croppings');
+  const photo = document.querySelector('#photo-preview');
+  const growthFactor = photo.naturalHeight / photo.height;
+  const stage = Jcrop.attach('photo-preview',{
     multi: true
   });
-  console.log('hi');
+  stage.listen('crop.change',(widget,e) => {
+    const coords = [...stage.crops];
+    const mapped = coords.map((item) => {
+      const newPos = {};
+      for (const prop in item.pos) {
+        newPos[prop] = Math.round(item.pos[prop] * growthFactor)
+      }
+      return JSON.stringify(newPos);
+    });
+    coordsInput.value = `[${mapped}]`;
+  });
 }
+
 
 const displayPreview = (input) => {
   if (input.files && input.files[0]) {
@@ -28,7 +42,5 @@ const previewImageOnFileSelect = () => {
     })
   }
 }
-
-
 
 export { previewImageOnFileSelect }

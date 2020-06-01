@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_021746) do
+ActiveRecord::Schema.define(version: 2020_06_01_045016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_021746) do
     t.boolean "exported", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_021746) do
     t.boolean "open", default: false
     t.float "latitude"
     t.float "longitude"
+    t.string "coords"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
