@@ -14,8 +14,6 @@
   width: 40px;
 }
 .navbar-brand {
-  border: 2px solid rgb(255, 91, 68);
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
   p {
     color: $bright-red;
     margin: 0px 4px;
@@ -45,7 +43,8 @@
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(68, 68, 68, 1);
+  color: $bright-red;
+  font-weight: bold;
   &:hover {
     color: $bright-red;
   }
