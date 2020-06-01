@@ -20,4 +20,8 @@ class RestaurantPolicy < ApplicationPolicy
   def edit_menus?
     record.user == user
   end
+
+  def update_menus?
+    edit_menus?
+  end
 end

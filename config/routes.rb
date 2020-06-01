@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :carts, only: [:show, :create, :edit, :update]
     member do
       get 'edit_menus'
+      patch 'update_menus'
     end
   end
   resources :menus, only: [] do

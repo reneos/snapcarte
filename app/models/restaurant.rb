@@ -6,6 +6,7 @@ class Restaurant < ApplicationRecord
   validates :address, :name, :phone_number, :cuisine, :menu_photo, :description, :photo, presence: true
   has_one_attached :photo
   has_one_attached :menu_photo
+  accepts_nested_attributes_for :menus
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
