@@ -1,7 +1,7 @@
 class Dish < ApplicationRecord
   validates :name, :price, presence: true
   belongs_to :menu
-  has_many :orders
+  # has_many :orders
 
   def pricetag
     string_price = "$#{price}"

@@ -1,9 +1,20 @@
 class CartsController < ApplicationController
-
   def add
     @cart = Cart.create
     @dish = Dish.find(params[:dish_id])
     @cart.add(@dish, @dish.price)
+  end
+
+  def remove
+    @cart.remove(@product, 1)
+  end
+
+  def empty
+    @cart.clear
+  end
+
+  def total
+    @cart.total
   end
 
   def create
