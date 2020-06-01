@@ -7,7 +7,7 @@ class CartsController < ApplicationController
     @cart = Cart.new
     @cart.restaurant = Cart.find(params[:restuaurant_id])
     @cart.user = current.user
-    if cart.save
+    if @cart.save
       redirect_to cart_path(@cart)
     else
       render :create
