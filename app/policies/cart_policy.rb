@@ -6,15 +6,10 @@ class CartPolicy < ApplicationPolicy
   end
 
   def create?
-    record.restaurant.user =! user
+    record.restaurant.user != user
   end
 
   def update?
-    record.restaurant.user =! user
+    record.restaurant.user != user
   end
-
-  def show?
-    record.restaurant.user =! user
-  end
-
 end

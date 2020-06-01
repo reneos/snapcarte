@@ -1,8 +1,4 @@
 class CartsController < ApplicationController
-  def show
-    @cart = Cart.find(params[:id])
-    authorize @cart
-  end
 
   def create
     @cart = Cart.new
