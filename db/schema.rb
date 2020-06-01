@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_064931) do
+ActiveRecord::Schema.define(version: 2020_06_01_021746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 2020_05_28_064931) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id", null: false
+    t.integer "confirmed"
+    t.index ["restaurant_id"], name: "index_carts_on_restaurant_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.float "price"
@@ -52,6 +62,15 @@ ActiveRecord::Schema.define(version: 2020_05_28_064931) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["dish_id"], name: "index_orders_on_dish_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -82,7 +101,11 @@ ActiveRecord::Schema.define(version: 2020_05_28_064931) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carts", "restaurants"
+  add_foreign_key "carts", "users"
   add_foreign_key "dishes", "menus"
   add_foreign_key "menus", "restaurants"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "dishes"
   add_foreign_key "restaurants", "users"
 end
