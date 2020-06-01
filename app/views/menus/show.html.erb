@@ -1,11 +1,3 @@
-<ul class="list-group">
-<% @menu.dishes.each do |dish| %>
-  <li class="list-group-item d-flex justify-content-between">
-    <div><%= dish.name %></div>
-    <div>$<%= dish.price.to_f / 100 %></div>
-  </li>
-<% end %>
-</ul>
-
-
-<%= @menu.photos %>
+<div>
+<%= cl_image_tag @menu.photos.first.key, id: 'menu-pic' %>
+</div>

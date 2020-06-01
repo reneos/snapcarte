@@ -1,0 +1,6 @@
+
+const initCropper = () => {
+
+}
+
+export { initCropper }

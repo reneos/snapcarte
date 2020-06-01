@@ -27,6 +27,9 @@ import "bootstrap";
 import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../components/init_mapbox';
 import { initFileUpload } from '../components/initFileUpload';
+import { previewImageOnFileSelect } from '../components/init_photo_preview';
+import { initCropper } from '../components/init_cropper';
+
 
 
 
@@ -38,6 +41,8 @@ document.addEventListener('turbolinks:load', () => {
   initSelect2();
   initMapbox();
   initFileUpload();
+  previewImageOnFileSelect();
+  initCropper();
 });
 
 import "controllers";
