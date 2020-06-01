@@ -1,0 +1,36 @@
+  <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 mt-5">
+      <h2>Restaurant info</h2>
+      <%= form_for(@restaurant) do |f| %>
+        <%= f.input :name, label: ('<i class="fas fa-file-signature"></i> Restaurant name').html_safe%>
+            <% name = 'Ittoku-Boston' %>
+        <% url = "https://www.tripadvisor.com/Restaurant_Review-g60745-d7920950-Reviews-Izakaya_#{name}_Massachusetts.html" %>
+          <% html_file = open(url).read %>
+          <% html_doc = Nokogiri::HTML(html_file) %>
+      <ul>
+        <li><%= html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip %></li>
+        <li><%= html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip %></li>
+        <li><%= html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip %></li>
+        <li><%= html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip %></li>
+        <li><%= html_doc.search('.yF-2QEPN').text.strip %></li>
+      </ul>
+      <% end %>
+
+
+      <div class="mb-3 instruction">Write a short description of your restaurant and let customers know your general hours for accepting orders.</div>
+      <%= f.input :photo, as: :file, label: ('Upload restaurant photo').html_safe %>
+      <div class="mb-3 instruction">Upload a photo of your restaurant storefront or interior.</div>
+      <h2>Menu</h2>
+      <%= f.simple_fields_for :menus do |m|%>
+      <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
+      <div class="mb-3 instruction">Upload a photo of your menu and Snapcarte will digitize it. You can confirm your dish names and prices on the next page.</div>
+      <% end %>
+      <div class="mt-4 mb-5">
+        <%= f.button :button, 'Create restaurant', class:"btn btn-primary", data: {disable_with: "<div><i class='fa fa-spinner fa-spin'></i> Please wait a moment.</div><div>Scanning menu for dishes.</div>"} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
