@@ -3,7 +3,7 @@ const initCropper = () => {
   const photo = document.querySelector('#photo-preview');
   const growthFactor = photo.naturalHeight / photo.height;
   const stage = Jcrop.attach('photo-preview',{
-    multi: true
+    multi: true,
   });
   stage.listen('crop.change',(widget,e) => {
     const coords = [...stage.crops];
