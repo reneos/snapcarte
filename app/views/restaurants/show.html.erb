@@ -74,6 +74,10 @@
               <span>$<%=item.dish.price / 100 %>0</span>
             </li>
           <% end %>
+          <li class="d-flex justify-content-between list-group-item">
+            <span>Total</span>
+            <span><%= @cart.total %></span>
+          </li>
           </ul>
           <%= link_to "Request Pickup", cart_path(@cart, status: 1), method: :patch, class: "btn btn-primary"%>
           </div>
