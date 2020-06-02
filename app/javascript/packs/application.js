@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -30,6 +31,7 @@ import { initFileUpload } from '../components/initFileUpload';
 import { previewImageOnFileSelect } from '../components/init_photo_preview';
 import { initCropper } from '../components/init_cropper';
 import { initFlatpickr } from '../components/init_flatpickr'
+
 
 
 
