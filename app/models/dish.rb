@@ -4,7 +4,7 @@ class Dish < ApplicationRecord
   # has_many :orders
 
   def pricetag
-    string_price = "$#{price}"
+    string_price = "$#{price.to_f/100}"
     string_price += string_price.match?(/\.\d$/) ? "0" : ""
     string_price
   end
