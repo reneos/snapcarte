@@ -4,8 +4,8 @@
       <h2>Restaurant info</h2>
       <% unless params[:scraping]%>
         <%= simple_form_for :scraping, url: new_restaurant_path, method: :get do |f| %>
-          <%= f.input :url, :as => :url %>
-          <%= f.button :submit %>
+          <%= f.input :url, :as => :url, label: ('<i class="fas fa-paperclip"></i> Paste Trip Advisor page link').html_safe %>
+          <%= f.button :submit, 'Autofill', class:"btn btn-primary mb-3", data: {disable_with: "Autofilling..."} %>
         <% end %>
       <% end -%>
 

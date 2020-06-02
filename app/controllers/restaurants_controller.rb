@@ -40,11 +40,8 @@ class RestaurantsController < ApplicationController
   end
 
   private
-# create new method scrape_restaurant(url)
 
   def scrape_restaurant(url)
-    # require "open-uri"
-
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
     Restaurant.new(
@@ -53,8 +50,6 @@ class RestaurantsController < ApplicationController
       cuisine: html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip,
       name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip
       )
-
-      # html_doc.search('.yF-2QEPN').text.strip
   end
 
   def restaurant_params
