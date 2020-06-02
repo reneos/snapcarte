@@ -5,41 +5,56 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 require 'faker'
 
-5.times do
-  user = User.new
-  user.email = Faker::Internet.free_email
-  user.password = 'password'
-  user.password_confirmation = 'password'
-  user.save!
+puts "destroying all carts"
+Cart.destroy_all
+
+puts "creating 30 to 40 users"
+rand(30..40).times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  domains = %w(gmail.com yahoo.com lewagon.org)
+  email = "#{first_name}#{['', '-', '.','_'].sample}#{last_name}@#{domains.sample}"
+  phone_number = Faker::PhoneNumber.cell_phone
+  User.create!(
+    first_name: first_name,
+    last_name: last_name,
+    email: email,
+    phone_number: phone_number,
+    password: 'password',
+    password_confirmation: 'password'
+  )
 end
 
-puts "user created"
 
-5.times do
-  restaurant = Restaurant.new
-  restaurant.name = Faker::Games::Witcher.witcher
-  restaurant.address = Faker::Address.full_address
-  restaurant.phone_number = Faker::PhoneNumber.phone_number
-  restaurant.cuisine = Faker::Nation.nationality
-  restaurant.user = User.all.sample
-  restaurant.save!
+
+
+puts "creating 100 orders"
+if Restaurant.any? && User.count > 1
+  restaurant = Restaurant.first
+  dishes = Menu.where(restaurant: restaurant).map {|m| m.dishes}.flatten
+  100.times do
+    user = User.where.not(id: restaurant.user.id).sample
+    date = Date.today - rand(1..30)
+    time = "#{rand(8..21)}:#{%w(00 15 30 45).sample}"
+    pickup_time = DateTime.parse(date.to_s + " " + time)
+    cart = Cart.create(
+      restaurant: restaurant,
+      user: user,
+      confirmed: 3,
+      pickup_time: pickup_time
+    )
+    rand(3..8).times do
+      CartItem.create(
+        dish: dishes.sample,
+        cart: cart
+      )
+    end
+  end
+  puts "Created 100 orders for restaurant with id #{restaurant.id}"
+  puts "Restaurant's user is: #{restaurant.user.email}"
+else
+  puts "not creating seeds -- make sure you have at least one restaurant and more than 1 user"
 end
-
-puts "Created new restaurants"
-
-5.times do
-  menu = Menu.new
-  menu.currency = Faker::Currency.code
-  menu.restaurant = Restaurant.all.sample
-  # menu.photos = File.open('../app/assets/images/menu_photo.jpg')
-  # file = URI.open(menu)
-  # menu.photos.attach(io: file, filename: 'menu_photo.jpg', content_type: 'image/jpg')
-  # menu.photos = Rails.root.join("app/assets/images/menu_photo.jpg").open
-  menu.photos.attach(io: File.open('app/assets/images/menu_photo.jpg'), filename: 'menu_photo.jpg')
-  menu.save!
-end
-puts "Created currency"
 

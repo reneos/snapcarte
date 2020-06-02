@@ -7,9 +7,9 @@
   </div>
 </div>
 
-<div class="row align-items-center">
+<div class="row align-items-center" data-controller="dishes">
   <div class="col-12 col-lg-8">
-    <ul class="list-group" data-controller="dishes">
+    <ul class="list-group">
       <%= simple_form_for [@menu.restaurant, @menu], remote: true do |m| %>
         <%= m.simple_fields_for :dishes, @menu.dishes.order(:created_at) do |d|%>
 
@@ -42,7 +42,7 @@
 
   </div>
   <div class="col-12">
-    <%= link_to "Continue to restaurant preview", restaurant_path(@menu.restaurant), class: 'btn btn-primary' %>
+    <%= link_to "Continue to restaurant preview", restaurant_path(@menu.restaurant), class: 'btn btn-primary', data: { target: "dishes" } %>
   </div>
 </div>
 

@@ -15,7 +15,11 @@ class CartsController < ApplicationController
       status = params[:status]
       cart.confirmed = status
       cart.save
-      redirect_to restaurant_path(cart.restaurant)
+      if status == 1
+        redirect_to restaurant_path(cart.restaurant)
+      elsif status == 2
+        redirect_to dashboard_index_path
+      end
     elsif params[:cart][:pickup_time]
       time = params[:cart][:pickup_time]
       date = DateTime.parse("#{Date.today.to_s} #{time}")
