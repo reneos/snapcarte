@@ -28,7 +28,7 @@ import "bootstrap";
 import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../components/init_mapbox';
 import { initFileUpload } from '../components/initFileUpload';
-import { scripeWeb } from '../components/init_scripe'
+
 
 
 

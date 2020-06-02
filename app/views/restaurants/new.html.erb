@@ -2,9 +2,11 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 mt-5">
       <h2>Restaurant info</h2>
-      <%= simple_form_for @user do |f| %>
-        <%= f.input :website, :as => :url %>
-        <%= f.button :submit %>
+      <% unless params[:scraping]%>
+        <%= simple_form_for :scraping, url: new_restaurant_path, method: :get do |f| %>
+          <%= f.input :url, :as => :url %>
+          <%= f.button :submit %>
+        <% end %>
       <% end -%>
 
       <%= simple_form_for @restaurant, remote: true do |f| %>

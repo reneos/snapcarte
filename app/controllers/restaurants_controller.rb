@@ -9,14 +9,14 @@ class RestaurantsController < ApplicationController
 
   def new
     # check if we have scrape_url
-    # if params_url = url
-    if @restaurant(params[url])
-       @restaurant = Restaurant.new(scrape_restaurant(url))
+    if params[:scraping]
+      url = params[:scraping][:url]
+       @restaurant = scrape_restaurant(url)
     else
       @restaurant = Restaurant.new
-      @restaurant.menus.build
-      authorize @restaurant
     end
+    @restaurant.menus.build
+    authorize @restaurant
   end
 
   def create
@@ -40,13 +40,19 @@ class RestaurantsController < ApplicationController
 
   private
 # create new method scrape_restaurant(url)
+
   def scrape_restaurant(url)
-    url = ""
+    # require "open-uri"
+
     html_file = open(url).read
-      @restaurant.address = html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip
-      @restauran.phone_number = html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip
-      @restauran.cuisine = html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip
-      @restaurant.name = html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip
+    html_doc = Nokogiri::HTML(html_file)
+    Restaurant.new(
+      address: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip,
+      phone_number: html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip,
+      cuisine: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip,
+      name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip
+      )
+
       # html_doc.search('.yF-2QEPN').text.strip
   end
 
