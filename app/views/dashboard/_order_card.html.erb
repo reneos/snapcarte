@@ -1,0 +1,28 @@
+<div class="card order-card">
+  <div class="card-header"><h4 class="mb-0 mt-2"><%= "Order ##{order.id}" %></h4></div>
+  <ul class="list-group list-group-flush">
+    <% order.cart_items.each do |item| %>
+    <li class="list-group-item d-flex justify-content-between">
+      <span><%= item.dish.name %></span>
+      <span><%= item.dish.pricetag %></span>
+    </li>
+    <% end %>
+    <li class="list-group-item d-flex justify-content-between"><strong>Total:</strong><span><%= order.total %></span></li>
+    <% if order.pending? %>
+      <li class="list-group-item">
+        <%= simple_form_for order, remote: true do |f| %>
+        <%= f.input :pickup_time, as: :string, input_html: { id: "pickup-time" }, required: true %>
+        <%= f.submit "Accept Order", class: "btn btn-primary mt-0" %>
+        <% end %>
+      </li>
+    <% elsif order.accepted? %>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Pickup Time:</span>
+        <span><%= order.pickup_time.strftime('%H:%m') %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <%= link_to "Mark as picked up", "#", class: "btn btn-primary mt-0" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
