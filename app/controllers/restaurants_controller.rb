@@ -4,6 +4,7 @@ class RestaurantsController < ApplicationController
     @markers = [{ lat: @restaurant.latitude,
                 lng: @restaurant.longitude
               }]
+    @cart = Cart.find_by_user_and_restaurant(current_user, @restaurant) || Cart.new
     authorize @restaurant
   end
 
