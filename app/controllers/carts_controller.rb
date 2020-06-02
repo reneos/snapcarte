@@ -8,4 +8,12 @@ class CartsController < ApplicationController
     redirect_to restaurant_path(@restaurant)
   end
 
+  def update
+    cart = Cart.find(params[:id])
+    status = params[:status]
+    cart.confirmed = status
+    cart.save
+    redirect_to restaurant_path(cart.restaurant)
+  end
+
 end

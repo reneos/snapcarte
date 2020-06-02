@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:show, :new, :create, :update] do
     resources :menus, only: [:create, :edit, :update]
     # resources :carts, only: [:create, :edit, :update, :add, :remove, :empty, :total]
-    resources :carts, only: [] do
+    resources :carts, only: [:update] do
       member do
         patch 'add_to'
       end
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       patch 'update_menus'
     end
   end
+  resources :carts, only: [:update]
   resources :menus, only: [] do
     resources :dishes, only: [:update]
   end

@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :dishes, through: :cart_items
 
   def self.find_by_user_and_restaurant(user, restaurant)
@@ -14,5 +14,21 @@ class Cart < ApplicationRecord
 
   def empty?
     cart_items.none?
+  end
+
+  def not_sent?
+    self.confirmed == 0
+  end
+
+  def pending?
+    self.confirmed == 1
+  end
+
+  def accepted?
+    self.confirmed == 2
+  end
+
+  def completed?
+    self.confirmed == 3
   end
 end
