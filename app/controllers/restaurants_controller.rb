@@ -9,9 +9,14 @@ class RestaurantsController < ApplicationController
 
   def new
     # check if we have scrape_url
-    @restaurant = Restaurant.new
-    @restaurant.menus.build
-    authorize @restaurant
+    # if params_url = url
+    if @restaurant(params[url])
+       @restaurant = Restaurant.new(scrape_restaurant(url))
+    else
+      @restaurant = Restaurant.new
+      @restaurant.menus.build
+      authorize @restaurant
+    end
   end
 
   def create
