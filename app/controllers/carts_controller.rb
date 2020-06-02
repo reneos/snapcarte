@@ -10,10 +10,15 @@ class CartsController < ApplicationController
 
   def update
     cart = Cart.find(params[:id])
-    status = params[:status]
-    cart.confirmed = status
-    cart.save
-    redirect_to restaurant_path(cart.restaurant)
+    authorize cart
+    if params[:status]
+      status = params[:status]
+      cart.confirmed = status
+      cart.save
+      redirect_to restaurant_path(cart.restaurant)
+    elsif params[:cart][:pickup_time]
+      raise
+    end
   end
 
 end

@@ -29,6 +29,7 @@ import { initMapbox } from '../components/init_mapbox';
 import { initFileUpload } from '../components/initFileUpload';
 import { previewImageOnFileSelect } from '../components/init_photo_preview';
 import { initCropper } from '../components/init_cropper';
+import { initFlatpickr } from '../components/init_flatpickr'
 
 
 
@@ -43,6 +44,7 @@ document.addEventListener('turbolinks:load', () => {
   initFileUpload();
   previewImageOnFileSelect();
   initCropper();
+  initFlatpickr();
 });
 
 import "controllers";
