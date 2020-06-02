@@ -48,3 +48,18 @@ label.file {
 .menu-photo {
   width: 100;
 }
+
+.flex-grow {
+  flex: 1;
+}
+
+.menu-info {
+  .restaurant_menus_dishes_name input, .restaurant_menus_dishes_price input {
+    border: 0;
+    background: none;
+    padding-right: 0;
+  }
+  .restaurant_menus_dishes_name {
+    flex: 1;
+  }
+}
