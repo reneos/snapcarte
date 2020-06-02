@@ -56,7 +56,7 @@ class RestaurantsController < ApplicationController
   end
 
   private
-
+    require 'open-uri'
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
