@@ -38,6 +38,11 @@
   }
 }
 
+.dish-price-buttons {
+  a {
+    color: inherit;
+  }
+}
 
 
 .restaurant-img {
@@ -66,7 +71,6 @@
 }
 
 .jumbotron {
-  height: 40vh;
   background-attachment: fixed;
 }
 

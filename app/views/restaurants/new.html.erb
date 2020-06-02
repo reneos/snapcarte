@@ -19,10 +19,12 @@
       <%= f.input :photo, as: :file, label: ('Upload restaurant photo').html_safe %>
       <div class="mb-3 instruction">Upload a photo of your restaurant storefront or interior.</div>
       <h2>Menu</h2>
-      <%= f.simple_fields_for :menus do |m|%>
-      <%= m.input :photos, as: :file, mulitiple: true, label: ('Upload menu').html_safe %>
-      <div class="mb-3 instruction">Upload a photo of your menu and Snapcarte will digitize it. You can confirm your dish names and prices on the next page.</div>
-      <% end %>
+        <div>
+        <%= image_tag "", class:"hidden", id:"photo-preview" %>
+        </div>
+        <%= f.input :menu_photo, as: :file, input_html: { id: 'photo-input' }, label: ('Upload menu').html_safe %>
+        <%= f.input :coords, as: :hidden, input_html: { id: 'croppings'} %>
+        <div class="mb-3 instruction">Upload a photo of your menu and Snapcarte will digitize it. You can confirm your dish names and prices on the next page.</div>
       <div class="mt-4 mb-5">
         <%= f.button :button, 'Create restaurant', class:"btn btn-primary", data: {disable_with: "<div><i class='fa fa-spinner fa-spin'></i> Please wait a moment.</div><div>Scanning menu for dishes.</div>"} %>
       </div>

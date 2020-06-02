@@ -1,58 +1,28 @@
 require 'open-uri'
-require 'net/http'
-require 'uri'
-require 'json'
-require 'base64'
-
 
 class ImageReader
-  def self.transcribe(image_key)
-    puts "Getting image url"
-   image_url = "https://res.cloudinary.com/dyam1xame/image/upload/e_contrast:100/e_grayscale/" + image_key
-   image = open(image_url).read
-   puts "Read the image"
-   encoded = Base64.encode64(image)
-   puts "Encoded the image"
-   uri = URI.parse('https://vision.googleapis.com/v1/images:annotate?key=' + ENV['GOOGLE_API'])
-   request = Net::HTTP::Post.new(uri)
-   request.content_type = 'application/json'
-   request.body = JSON.dump(
-     'requests' => [
-       {
-         'image' => {
-           'content' => encoded
-         },
-         'features' => [
-           {
-             'type' => 'TEXT_DETECTION',
-             'model' => 'builtin/latest'
-           }
-         ]
-       }
-     ]
-   )
+  def self.transcribe(key, coord, username)
+    if coord.empty?
+      url = 'https://res.cloudinary.com/' + username + '/image/upload/' + key
+    else
+      url = 'https://res.cloudinary.com/' + username + '/image/upload/' + coord + ',c_crop/' + key
+    end
 
-   req_options = {
-     use_ssl: uri.scheme == 'https'
-   }
+    image = open(url)
 
-   response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-     http.request(request)
-   end
+    response = GoogleOCR.text_detection(
+      image: image,
+      max_results: 1
+    )
+    data = response.responses[0].text_annotations[0].description
 
-   data = JSON.parse(response.body)
+    text = data.delete("$").gsub(/(\R+|\.{2,})/,' ').gsub(/\s+/,' ').gsub(/(?<=\d)\.($|\s)/, ' ').gsub(/\s\./, ' ')
+    puts "Stripped text"
 
-   puts "Made the request and received body"
-
-   text = data['responses'][0]['textAnnotations'][0]['description']
-   text = text.delete("$").gsub(/(\R+|\.{2,})/,' ').gsub(/\s+/,' ').gsub(/(?<=\d)\.($|\s)/, ' ').gsub(/\s\./, ' ')
-   puts "Stripped text"
-
-   # pattern = /(?<dish>.*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
-   pattern = /(?<dish>[a-zA-Z].*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
-   scanned = text.scan(pattern)
-   puts "Scanned text"
-   scanned
+    # pattern = /(?<dish>.*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
+    pattern = /(?<dish>[a-zA-Z].*?)\s(?<price>\d+(\.\d+)?)(\s|$)/
+    scanned = text.scan(pattern)
+    puts "Scanned text"
+    scanned
   end
 end
-

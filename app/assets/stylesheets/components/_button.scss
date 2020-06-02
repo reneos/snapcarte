@@ -10,10 +10,10 @@
 }
 
 .btn-primary {
-  background-color: darken($dark-yellow, 15%);
+  background-color: darken($dark-yellow, 15%) !important;
   border: none;
   border-radius: 10px;
   &:hover, &:active, &:focus {
-    background-color: darken($dark-yellow, 25%) !important;
+    background-color: darken($dark-yellow, 25%);
   }
 }

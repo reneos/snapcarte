@@ -1,15 +1,16 @@
 class RestaurantsController < ApplicationController
+
+
   def show
     @restaurant = Restaurant.find(params[:id])
     @markers = [{ lat: @restaurant.latitude,
                 lng: @restaurant.longitude
               }]
+    @cart = Cart.find_by_user_and_restaurant(current_user, @restaurant) || Cart.create(user: current_user, restaurant: @restaurant)
     authorize @restaurant
   end
 
   def new
-
-    # check if we have scrape_url
     if params[:scraping] != nil
       url = params[:scraping][:url]
        @restaurant = scrape_restaurant(url)
@@ -25,7 +26,7 @@ class RestaurantsController < ApplicationController
     @restaurant.user = current_user
     authorize @restaurant
     if @restaurant.save
-      redirect_to edit_restaurant_menu_path(@restaurant, @restaurant.menus.first), flash: {notice: "Congratulations! Restaurant and menu successfully created." }
+      redirect_to edit_menus_restaurant_path(@restaurant)
     else
       render :new
     end
@@ -37,6 +38,21 @@ class RestaurantsController < ApplicationController
     authorize @restaurant
     @restaurant.save
     redirect_to restaurant_path(@restaurant)
+  end
+
+  def edit_menus
+    @restaurant = Restaurant.find(params[:id])
+    authorize @restaurant
+  end
+
+  def update_menus
+    @restaurant = Restaurant.find(params[:id])
+    authorize @restaurant
+    if @restaurant.update(restaurant_menu_params)
+      redirect_to edit_menus_restaurant_path(@restaurant)
+    else
+      render :edit_menus
+    end
   end
 
   private
@@ -53,6 +69,12 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:description, :photo, :name, :address, :phone_number, :cuisine, menus_attributes: [:currency, :photos])
+    params.require(:restaurant).permit(:description, :photo, :name, :address, :coords, :phone_number, :cuisine, :menu_photo)
   end
+
+  def restaurant_menu_params
+    params.require(:restaurant).permit(menus_attributes: [:id, :name, dishes_attributes: [:id, :name,:price]])
+    # params.require(:menu).permit(dishes_attributes: [:id, :name, :price])
+  end
+
 end
