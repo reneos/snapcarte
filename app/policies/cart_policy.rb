@@ -5,11 +5,18 @@ class CartPolicy < ApplicationPolicy
     end
   end
 
+  def add_to?
+    # record.restaurant.user != user
+    true
+  end
+
   def create?
-    record.restaurant.user != user
+    # record.restaurant.user != user
+    true
   end
 
   def update?
-    record.restaurant.user != user
+    # record.restaurant.user != user
+    true
   end
 end
