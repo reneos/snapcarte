@@ -8,6 +8,7 @@ class RestaurantsController < ApplicationController
   end
 
   def new
+    # check if we have scrape_url
     @restaurant = Restaurant.new
     @restaurant.menus.build
     authorize @restaurant
@@ -33,6 +34,16 @@ class RestaurantsController < ApplicationController
   end
 
   private
+# create new method scrape_restaurant(url)
+  def scrape_restaurant(url)
+    url = ""
+    html_file = open(url).read
+      @restaurant.address = html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip
+      @restauran.phone_number = html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip
+      @restauran.cuisine = html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip
+      @restaurant.name = html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip
+      # html_doc.search('.yF-2QEPN').text.strip
+  end
 
   def restaurant_params
     params.require(:restaurant).permit(:description, :photo, :name, :address, :phone_number, :cuisine, menus_attributes: [:currency, :photos])
