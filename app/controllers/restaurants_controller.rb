@@ -11,7 +11,12 @@ class RestaurantsController < ApplicationController
   end
 
   def new
-    @restaurant = Restaurant.new
+    if params[:scraping] != nil
+      url = params[:scraping][:url]
+       @restaurant = scrape_restaurant(url)
+    else
+      @restaurant = Restaurant.new
+    end
     @restaurant.menus.build
     authorize @restaurant
   end
@@ -51,6 +56,17 @@ class RestaurantsController < ApplicationController
   end
 
   private
+    require 'open-uri'
+  def scrape_restaurant(url)
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+    Restaurant.new(
+      address: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip,
+      phone_number: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip,
+      cuisine: html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip,
+      name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip
+      )
+  end
 
   def restaurant_params
     params.require(:restaurant).permit(:description, :photo, :name, :address, :coords, :phone_number, :cuisine, :menu_photo)

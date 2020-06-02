@@ -6,9 +6,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email,
+    <%= f.input :first_name,
                 required: true,
                 autofocus: true,
+                input_html: { autocomplete: "first name" }, label: ('First name').html_safe %>
+    <%= f.input :last_name,
+                required: true,
+                input_html: { autocomplete: "last name" }, label: ('Last name').html_safe %>
+    <%= f.input :phone_number,
+                required: true,
+                input_html: { autocomplete: "phone number" }, label: ('Phone number').html_safe %>
+    <%= f.input :email,
+                required: true,
                 input_html: { autocomplete: "email" }, label: ('<i class="fas fa-envelope"></i> Email').html_safe %>
     <%= f.input :password,
                 required: true,

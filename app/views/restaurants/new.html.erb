@@ -2,6 +2,13 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 mt-5">
       <h2>Restaurant info</h2>
+      <% unless params[:scraping]%>
+        <%= simple_form_for :scraping, url: new_restaurant_path, method: :get do |f| %>
+          <%= f.input :url, :as => :url, label: ('<i class="fas fa-paperclip"></i> Paste your Trip Advisor page link').html_safe %>
+          <%= f.button :submit, 'Autofill', class:"btn btn-primary mb-3", data: {disable_with: "Autofilling..."} %>
+        <% end %>
+      <% end -%>
+
       <%= simple_form_for @restaurant, remote: true do |f| %>
       <%= f.input :name, label: ('<i class="fas fa-file-signature"></i> Restaurant name').html_safe%>
       <%= f.input :address, label: ('<i class="fas fa-map-pin"></i> Address').html_safe %>
@@ -25,5 +32,4 @@
     </div>
   </div>
 </div>
-
 
