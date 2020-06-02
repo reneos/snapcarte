@@ -1,0 +1,17 @@
+.order-card {
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px #e4dfd4;
+  .form-control[readonly] {
+    background-color: white;
+  }
+  .list-group-item {
+    border-bottom: 1px dashed $grey;
+    &:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+  }
+  .list-group {
+    border-radius: 0 0 10px 10px;
+  }
+}

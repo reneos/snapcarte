@@ -10,10 +10,20 @@ class CartsController < ApplicationController
 
   def update
     cart = Cart.find(params[:id])
-    status = params[:status]
-    cart.confirmed = status
-    cart.save
-    redirect_to restaurant_path(cart.restaurant)
+    authorize cart
+    if params[:status]
+      status = params[:status]
+      cart.confirmed = status
+      cart.save
+      redirect_to restaurant_path(cart.restaurant)
+    elsif params[:cart][:pickup_time]
+      time = params[:cart][:pickup_time]
+      date = DateTime.parse("#{Date.today.to_s} #{time}")
+      cart.pickup_time = date
+      cart.confirmed = 2
+      cart.save
+      redirect_to dashboard_index_path
+    end
   end
 
 end

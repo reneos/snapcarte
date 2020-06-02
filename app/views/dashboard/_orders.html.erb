@@ -1,22 +1,19 @@
 <% restaurants.each do |restaurant| %>
-  <h2><% restaurant.name %></h2>
+  <h2><%= restaurant.name %></h2>
+  <div class="row mb-5">
   <div class="col-12 col-md-6">
     <h3>Accepted orders</h3>
     <% restaurant.carts.where(confirmed: 2).each do |order| %>
-      <% order.cart_items.each do |item| %>
-        <%= item.dish.name %>
-        <%= item.dish.pricetag %>
-      <% end %>
+      <%= render 'order_card', order: order %>
     <% end %>
   </div>
   <div class="col-12 col-md-6">
     <h3>Pending orders</h3>
+
     <% restaurant.carts.where(confirmed: 1).each do |order| %>
-      <% order.cart_items.each do |item| %>
-        <%= item.dish.name %>
-        <%= item.dish.pricetag %>
-      <% end %>
+      <%= render 'order_card', order: order %>
     <% end %>
   </div>
+</div>
 
 <% end %>
