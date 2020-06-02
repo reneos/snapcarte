@@ -22,7 +22,6 @@ class CartsController < ApplicationController
       cart.pickup_time = date
       cart.confirmed = 2
       cart.save
-      raise
       redirect_to dashboard_index_path
     end
   end
