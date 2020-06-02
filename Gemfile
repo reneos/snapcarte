@@ -68,5 +68,4 @@ gem 'turbolinks_render'
 gem 'faker'
 gem 'geocoder'
 gem 'google-cloud-vision'
-gem 'acts_as_shopping_cart'
 

@@ -44,14 +44,31 @@
     </div>
 
     <div class="col-12">
+      <div class="cart">
+        <% if @cart.empty? %>
+          <div>There are no items in your cart.</div>
+        <% end %>
+        <% @cart.cart_items.each do |item| %>
+          <div><%= item.dish.name %></div>
+          <div><%= item.dish.price %></div>
+        <% end %>
+      </div>
 
         <% @restaurant.menus.each do |menu| %>
         <h2 class="mt-5"><%= menu.name %></h2>
         <ul class="list-group w-100 restaurant-menu">
           <% menu.dishes.order(:created_at).each do |dish| %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
+
               <span><%= dish.name %></span>
+
+              <div class="dish-price-buttons">
               <span><%= dish.pricetag %></span>
+              <%= link_to "<i class='fas fa-plus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), method: :patch %>
+              <%= link_to "<i class='fas fa-minus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), method: :patch %>
+              </div>
+
+
             </li>
           <% end %>
       </ul>
