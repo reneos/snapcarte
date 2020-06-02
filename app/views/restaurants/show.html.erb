@@ -10,8 +10,6 @@
 
         <% end %>
         <%= link_to "Check out dashboard", dashboard_index_path, class: "btn btn-primary"  %>
-
-
       </div>
     </div>
   <% end %>
@@ -59,14 +57,16 @@
     </div>
 
     <div class="col-12 col-md-4">
+      <h3><i class="fas fa-shopping-cart"></i> Your cart</h3>
       <div class="cart">
-        <% if !@cart.not_sent?  %>
+        <% if current_user == @restaurant.user %>
+          <div>You cannot request an order for your own restaurant.</div>
+        <% elsif !@cart.not_sent?  %>
           <div>Your order has been requested. Please wait for confirmation.</div>
         <% elsif @cart.empty? %>
           <div>There are no items in your cart.</div>
         <% else %>
           <div class='container'>
-          <h3><i class="fas fa-shopping-cart"></i> Your cart</h3>
           <ul class="list-group">
           <% @cart.cart_items.each do |item| %>
             <li class="d-flex justify-content-between list-group-item">

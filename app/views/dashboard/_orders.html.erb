@@ -1,41 +1,17 @@
 <% restaurants.each do |restaurant| %>
   <h2><%= restaurant.name %></h2>
-  <div class="row">
+  <div class="row mb-5">
   <div class="col-12 col-md-6">
     <h3>Accepted orders</h3>
     <% restaurant.carts.where(confirmed: 2).each do |order| %>
-      <% order.cart_items.each do |item| %>
-        <%= item.dish.name %>
-        <%= item.dish.pricetag %>
-      <% end %>
+      <%= render 'order_card', order: order %>
     <% end %>
   </div>
   <div class="col-12 col-md-6">
     <h3>Pending orders</h3>
 
     <% restaurant.carts.where(confirmed: 1).each do |order| %>
-      <div class="card order-card">
-        <div class="card-header"><h4 class="mb-0 mt-2"><%= "Order ##{order.id}" %></h4></div>
-        <ul class="list-group list-group-flush">
-          <% order.cart_items.each do |item| %>
-          <li class="list-group-item d-flex justify-content-between">
-            <span><%= item.dish.name %></span>
-            <span><%= item.dish.pricetag %></span>
-          </li>
-          <% end %>
-          <li class="list-group-item d-flex justify-content-between"><strong>Total:</strong><span><%= order.total %></span></li>
-          <li class="list-group-item">
-          <%= simple_form_for order, remote: true do |f| %>
-          <%= f.input :pickup_time, as: :string, input_html: { id: "pickup-time" }, required: true %>
-          <%= f.submit "Accept Order", class: "btn btn-primary mt-0" %>
-          <% end %>
-          </li>
-        </ul>
-      </div>
-
-
-
-
+      <%= render 'order_card', order: order %>
     <% end %>
   </div>
 </div>

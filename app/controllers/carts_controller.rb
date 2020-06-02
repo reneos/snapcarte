@@ -17,7 +17,13 @@ class CartsController < ApplicationController
       cart.save
       redirect_to restaurant_path(cart.restaurant)
     elsif params[:cart][:pickup_time]
+      time = params[:cart][:pickup_time]
+      date = DateTime.parse("#{Date.today.to_s} #{time}")
+      cart.pickup_time = date
+      cart.confirmed = 2
+      cart.save
       raise
+      redirect_to dashboard_index_path
     end
   end
 
