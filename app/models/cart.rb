@@ -8,6 +8,13 @@ class Cart < ApplicationRecord
     Cart.where(user: user, restaurant: restaurant).first
   end
 
+  def total
+    sum = self.cart_items.map {|i| i.dish.price}.sum
+    string_price = "$#{sum.to_f/100}"
+    string_price += string_price.match?(/\.\d$/) ? "0" : ""
+    string_price
+  end
+
   def add(dish)
     CartItem.create(dish: dish, cart: self)
   end
