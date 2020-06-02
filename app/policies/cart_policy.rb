@@ -15,6 +15,10 @@ class CartPolicy < ApplicationPolicy
     true
   end
 
+  def edit?
+    record.restaurant.user != user
+  end
+
   def update?
     # record.restaurant.user != user
     true
