@@ -1,8 +1,8 @@
 class Restaurant < ApplicationRecord
   after_create_commit :create_menus
   belongs_to :user
-  has_many :menus
-  has_many :carts
+  has_many :menus, dependent: :destroy
+  has_many :carts, dependent: :destroy
   validates :address, :name, :phone_number, :cuisine, :menu_photo, :description, :photo, presence: true
   has_one_attached :photo
   has_one_attached :menu_photo

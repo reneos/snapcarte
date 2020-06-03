@@ -3,9 +3,9 @@ require 'open-uri'
 class ImageReader
   def self.transcribe(key, coord, username)
     if coord.empty?
-      url = 'https://res.cloudinary.com/' + username + '/image/upload/' + key
+      url = 'https://res.cloudinary.com/' + username + '/image/upload/e_contrast:100/e_grayscale/' + key
     else
-      url = 'https://res.cloudinary.com/' + username + '/image/upload/' + coord + ',c_crop/' + key
+      url = 'https://res.cloudinary.com/' + username + '/image/upload/e_contrast:100/e_grayscale/' + coord + ',c_crop/' + key
     end
 
     image = open(url)
