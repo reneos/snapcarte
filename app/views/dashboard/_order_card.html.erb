@@ -12,21 +12,31 @@
     </li>
     <% end %>
     <li class="list-group-item d-flex justify-content-between"><strong><i class="fas fa-cash-register mr-2"></i>Total:</strong><span><%= order.total %></span></li>
-    <% if order.pending? %>
+    <% if order.request_type == 0 %>
+      <% if order.pending? %>
       <li class="list-group-item">
         <%= simple_form_for order, remote: true do |f| %>
         <%= f.input :pickup_time, as: :string, input_html: { id: "pickup-time" }, required: true %>
         <%= f.submit "Accept Order", class: "btn btn-primary mt-0" %>
         <% end %>
       </li>
-    <% elsif order.accepted? %>
-      <li class="list-group-item d-flex justify-content-between">
-        <span><i class="fas fa-clock mr-2"></i>Pickup Time:</span>
-        <span><%= order.pickup_time.strftime('%H:%m') %></span>
-      </li>
-      <li class="list-group-item d-flex justify-content-center">
-        <%= link_to "Mark as picked up", cart_path(order, status: 3), method: :patch, class: "btn btn-primary mt-0" %>
-      </li>
+      <% elsif order.accepted? %>
+        <li class="list-group-item d-flex justify-content-between">
+          <span><i class="fas fa-clock mr-2"></i>Pickup Time:</span>
+          <span><%= order.pickup_time.strftime('%H:%m') %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-center">
+          <%= link_to "Mark as picked up", cart_path(order, status: 3), method: :patch, class: "btn btn-primary mt-0" %>
+        </li>
+      <% end %>
+    <% else %>
+      <% if order.pending? %>
+        <li class="list-group-item d-flex justify-content-center">
+          <%= link_to "Accept Delivery", cart_path(order, status: 2), method: :patch, class: "btn btn-primary mt-0" %>
+        </li>
+      <% elsif order.accepted? %>
+          <%= link_to "Track Delivery", order.delivery_url, class: "btn btn-primary mt-0" %>
+      <% end %>
     <% end %>
   </ul>
 </div>
