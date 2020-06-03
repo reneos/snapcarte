@@ -65,6 +65,13 @@ label.file {
     flex: 1;
   }
   .restaurant_menus_dishes_price {
-    width: 80px;
+    width: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &:before {
+      content: "$";
+      margin-right: -15px;
+    }
   }
 }

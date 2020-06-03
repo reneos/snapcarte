@@ -15,9 +15,9 @@ class CartsController < ApplicationController
       status = params[:status]
       cart.confirmed = status
       cart.save
-      if status == 1
+      if cart.pending?
         redirect_to restaurant_path(cart.restaurant)
-      elsif status == 2
+      elsif cart.accepted?
         redirect_to dashboard_index_path
       end
     elsif params[:cart][:pickup_time]

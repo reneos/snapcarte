@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resources :carts, only: [:update]
+  resources :cart_items, only: [:destroy]
   resources :dishes, only: [:destroy]
   resources :dashboard, only: [:index]
 end

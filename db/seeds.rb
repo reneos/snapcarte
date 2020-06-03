@@ -27,9 +27,6 @@ rand(30..40).times do
   )
 end
 
-
-
-
 puts "creating 100 orders"
 if Restaurant.any? && User.count > 1
   restaurant = Restaurant.first
