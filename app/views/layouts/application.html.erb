@@ -13,9 +13,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body class="d-flex flex-column">
+  <body class="d-flex flex-column" data-user-id="<%= current_user.id %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <div class="notifications">
+
+    </div>
     <div class="container">
     <%= yield %>
     </div>

@@ -16,6 +16,8 @@ class CartsController < ApplicationController
       cart.confirmed = status
       cart.save
       if cart.pending?
+        user = cart.restaurant.user
+        UserChannel.broadcast_to(user, render_to_string(partial: "shared/notification"))
         redirect_to restaurant_path(cart.restaurant)
       elsif cart.accepted?
         redirect_to dashboard_index_path
