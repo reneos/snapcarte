@@ -4,11 +4,12 @@
       <h2>Restaurant info</h2>
       <% unless params[:scraping]%>
         <%= simple_form_for :scraping, url: new_restaurant_path, method: :get do |f| %>
-          <%= f.input :url, :as => :url, label: ('<i class="fas fa-paperclip"></i> Paste your Trip Advisor page link').html_safe %>
+          <%= f.input :url, :as => :url, label: ('<i class="fab fa-tripadvisor"></i> Paste your Trip Advisor page link').html_safe %>
+          <div class="mb-3 instruction">Your link will autocomplete restaurant info.</div>
           <%= f.button :submit, 'Autofill', class:"btn btn-primary mt-0 mb-4", data: {disable_with: "Autofilling..."} %>
         <% end %>
       <% end -%>
-
+      <h3 class="mb-3">Or, fill the form manually</h3>
       <%= simple_form_for @restaurant, remote: true do |f| %>
       <%= f.input :name, label: ('<i class="fas fa-file-signature"></i> Restaurant name').html_safe%>
       <%= f.input :address, label: ('<i class="fas fa-map-pin"></i> Address').html_safe %>
