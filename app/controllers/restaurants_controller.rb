@@ -72,7 +72,7 @@ class RestaurantsController < ApplicationController
       phone_number: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip,
       cuisine: html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip,
       name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip,
-      time: open_time
+      time: open_time.strip
     )
   end
 

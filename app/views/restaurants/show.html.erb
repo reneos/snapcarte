@@ -27,6 +27,8 @@
         <li class="list-group-item"><span class="icon"><i class="fas fa-map-pin mr-3"></i></span> <%= @restaurant.address %></li>
         <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= @restaurant.cuisine %></li>
         <li class="list-group-item"><i class="fas fa-phone mr-3"></i> <%= @restaurant.phone_number %></li>
+        <% pattern = /(?<day>(Sun|Mon|Tue|Wed|Thu|Fri|Sat))(?<hours>.{19})/ %>
+        <li class="list-group-item"><i class="fas fa-phone mr-3"></i> <%= @restaurant.time.match(pattern) %></li>
       </ul>
     </div>
 
