@@ -69,4 +69,8 @@ gem 'faker'
 gem 'geocoder'
 gem 'money-rails'
 gem 'google-cloud-vision'
+# web scraping
+gem 'watir'
+gem 'webdrivers'
+gem 'faker'
 
