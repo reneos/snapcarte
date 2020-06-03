@@ -30,9 +30,8 @@ import { initMapbox } from '../components/init_mapbox';
 import { initFileUpload } from '../components/initFileUpload';
 import { previewImageOnFileSelect } from '../components/init_photo_preview';
 import { initCropper } from '../components/init_cropper';
-import { initFlatpickr } from '../components/init_flatpickr'
-
-
+import { initFlatpickr } from '../components/init_flatpickr';
+import { initUserCable } from '../channels/user_channel'
 
 
 
@@ -48,6 +47,7 @@ document.addEventListener('turbolinks:load', () => {
   previewImageOnFileSelect();
   initCropper();
   initFlatpickr();
+  initUserCable();
 
 
   const elements = document.querySelectorAll("[data-turbolinks-scroll]");

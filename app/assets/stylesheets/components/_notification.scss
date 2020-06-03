@@ -1,0 +1,11 @@
+.notification-alert {
+  position:relative !important;
+}
+
+.notifications {
+  position: fixed;
+  right: 2em;
+  bottom: 3em;
+  z-index: 9999;
+  transform: translateY(-100%);
+}
