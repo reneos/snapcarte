@@ -2,11 +2,15 @@ class RestaurantsController < ApplicationController
 
 
   def show
+
     @restaurant = Restaurant.find(params[:id])
     @markers = [{ lat: @restaurant.latitude,
                 lng: @restaurant.longitude
               }]
     @cart = Cart.find_by_user_and_restaurant(current_user, @restaurant) || Cart.create(user: current_user, restaurant: @restaurant)
+    if params[:request] && @cart
+      @quote = QuoteGetter.call(@cart)
+    end
     authorize @restaurant
   end
 

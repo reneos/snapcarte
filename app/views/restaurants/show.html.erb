@@ -47,7 +47,7 @@
               <span><%= dish.name %></span>
               <div class="dish-price-buttons">
               <span>$<%= dish.price %></span>
-              <%= link_to "<i class='fas fa-plus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), data: { 'turbolinks-scroll': false }, remote: true, method: :patch %>
+              <%= link_to "<i class='fas fa-plus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), data: { 'turbolinks-scroll': false },  remote: true, method: :patch %>
               </div>
             </li>
           <% end %>
@@ -81,7 +81,17 @@
             <span><%= @cart.total %></span>
           </li>
           </ul>
-          <%= link_to "Request Pickup", cart_path(@cart, status: 1), method: :patch, class: "btn btn-primary"%>
+          <%= link_to "Request Pickup", cart_path(@cart, status: 1, request_type: 0), method: :patch, class: "btn btn-primary"%>
+          <% if @quote %>
+          <div>
+            <div><%= "Delivery cost: #{@quote["fee"]}" %></div>
+            <div><%= "Estimated delivery time: #{DateTime.parse(@quote["dropoff_eta"])}" %></div>
+            <%= link_to "Request Delivery", cart_path(@cart, status: 1, request_type: 1), method: :patch, class: "btn btn-primary" %>
+          </div>
+          <% else %>
+            <%= link_to "Check Delivery", restaurant_path(@restaurant, request: 'delivery'), class: "btn btn-primary" %>
+          <% end %>
+
           </div>
         <% end %>
       </div>

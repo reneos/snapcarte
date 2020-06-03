@@ -14,6 +14,7 @@ class CartsController < ApplicationController
     if params[:status]
       status = params[:status]
       cart.confirmed = status
+      cart.request_type = params[:request_type]
       cart.save
       if cart.pending?
         redirect_to restaurant_path(cart.restaurant)
