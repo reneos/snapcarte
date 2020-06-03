@@ -50,3 +50,28 @@ label.file {
   position: sticky;
   top: 80px;
 }
+
+.flex-grow {
+  flex: 1;
+}
+
+.menu-info {
+  .restaurant_menus_dishes_name input, .restaurant_menus_dishes_price input {
+    border: 0;
+    background: none;
+    padding-right: 0;
+  }
+  .restaurant_menus_dishes_name {
+    flex: 1;
+  }
+  .restaurant_menus_dishes_price {
+    width: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &:before {
+      content: "$";
+      margin-right: -15px;
+    }
+  }
+}

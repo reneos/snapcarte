@@ -67,5 +67,6 @@ gem 'pundit'
 gem 'turbolinks_render'
 gem 'faker'
 gem 'geocoder'
+gem 'money-rails'
 gem 'google-cloud-vision'
 

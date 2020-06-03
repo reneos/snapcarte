@@ -38,7 +38,7 @@
       <p><%= @restaurant.description %></p>
     </div>
 
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-7">
         <% @restaurant.menus.each do |menu| %>
         <h2><%= menu.name %></h2>
         <ul class="list-group w-100 restaurant-menu mb-4">
@@ -46,9 +46,8 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span><%= dish.name %></span>
               <div class="dish-price-buttons">
-              <span><%= dish.pricetag %></span>
-              <%= link_to "<i class='fas fa-plus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), method: :patch %>
-              <%= link_to "<i class='fas fa-minus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), method: :patch %>
+              <span>$<%= dish.price %></span>
+              <%= link_to "<i class='fas fa-plus-circle'></i>".html_safe, add_to_restaurant_cart_path(@restaurant, @cart, dish_id: dish.id), data: { 'turbolinks-scroll': false }, remote: true, method: :patch %>
               </div>
             </li>
           <% end %>
@@ -56,7 +55,7 @@
       <% end %>
     </div>
 
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-5">
       <h3><i class="fas fa-shopping-cart"></i> Your cart</h3>
       <div class="cart">
         <% if current_user == @restaurant.user %>
@@ -70,8 +69,11 @@
           <ul class="list-group">
           <% @cart.cart_items.each do |item| %>
             <li class="d-flex justify-content-between list-group-item">
+              <div class="w-100 d-flex justify-content-between">
               <span><%= item.dish.name %></span>
-              <span>$<%=item.dish.price / 100 %>0</span>
+              <span>$<%=item.dish.price %></span>
+              </div>
+              <%= link_to "<i class='fas fa-minus-circle'></i>".html_safe, cart_item_path(item), class: "ml-1", data: { 'turbolinks-scroll': false }, remote: true, method: :delete %>
             </li>
           <% end %>
           <li class="d-flex justify-content-between list-group-item">
