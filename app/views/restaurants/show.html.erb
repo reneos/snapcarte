@@ -15,40 +15,37 @@
   <% end %>
 
   <div class="row restaurant-show-information mt-5 pt-3">
-    <div class="col-12 d-flex align-items-center justify-content-between">
+    <div class="col-12 d-flex align-items-center justify-content-between mb-4 ">
       <h1><%= @restaurant.name %></h1>
       <span class="restaurant-status badge badge-<%= @restaurant.open ? "success" : "warning" %>">
       <%= @restaurant.status %>
       </span>
     </div>
-
-    <div class="col-12 col-md-6 d-flex align-items-center">
+       <div class="col-12 col-md-4 d-flex align-items-top">
       <ul class="list-group w-100 restaurant-info">
         <li class="list-group-item"><span class="icon"><i class="fas fa-map-pin mr-3"></i></span> <%= @restaurant.address %></li>
         <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= @restaurant.cuisine %></li>
         <li class="list-group-item"><i class="fas fa-phone mr-3"></i> <%= @restaurant.phone_number %></li>
-        <h6 class="mt-3 mb-3">Open hours</h6>
-        <% time_table = @restaurant.time.scan(/(?<day>(Sun|Mon|Tue|Wed|Thu|Fri|Sat))(?<hours>.{19})/) %>
-          <% time_table.each do |time| %>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"><i class="fas fa-clock mr-3"></i><%= time.join(' ') %></th>
-              </tr>
-            </thead>
-          </table>
-          <% end %>
+        <li class="list-group-item"><%= @restaurant.description %></li>
       </ul>
     </div>
-
-    <div class="col-12 col-md-6">
-      <%= cl_image_tag @restaurant.photo.key, alt: "alttext", crop: :fill, class: "restaurant-img" %>
+    <div class="col-12 col-md-4">
+<h6 class="mb-1"><i class="fas fa-clock mr-3"></i>Open hours: </h6>
+   <table class="table">
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+        <% time_table = @restaurant.time.scan(/(?<day>(Sun|Mon|Tue|Wed|Thu|Fri|Sat))(?<hours>.{19})/) %>
+        <% time_table.each do |time| %>
+      <li class="list-group-item"><%= time.join(' ') %></li>
+        <% end %>
+    </tr>
+    </tbody>
+ </table>
+</div>
+    <div class="col-12 col-md-4">
+      <%= cl_image_tag @restaurant.photo.key, alt: "alttext", crop: :fill, class: "restaurant-img h-100" %>
     </div>
-
-    <div class="col-12 col-md-6 mt-3">
-      <p><%= @restaurant.description %></p>
-    </div>
-
     <div class="col-12 col-md-7">
         <% @restaurant.menus.each do |menu| %>
         <h2><%= menu.name %></h2>
@@ -65,9 +62,8 @@
       </ul>
       <% end %>
     </div>
-
     <div class="col-12 col-md-5">
-      <h3><i class="fas fa-shopping-cart"></i> Your cart</h3>
+      <h3><i class="fas fa-shopping-cart mt-3"></i> Your cart</h3>
       <div class="cart">
         <% if current_user == @restaurant.user %>
           <div>You cannot request an order for your own restaurant.</div>
