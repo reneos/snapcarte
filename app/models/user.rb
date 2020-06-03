@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :restaurants
   has_many :carts
+
+  def full_name
+    "#{self.first_name} #{self.last_name}".titleize
+  end
 end
