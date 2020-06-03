@@ -1,4 +1,4 @@
-  <div class="container">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-8 mt-5">
       <h2>Restaurant info</h2>
@@ -15,6 +15,7 @@
       <%= f.input :address, label: ('<i class="fas fa-map-pin"></i> Address').html_safe %>
       <%= f.input :phone_number, label: ('<i class="fas fa-phone"></i> Phone_number').html_safe %>
       <%= f.input :cuisine, label: ('<i class="fas fa-utensils"></i> Cuisine').html_safe %>
+      <%= f.input :time, label: ('<i class="fas fa-clock"></i> Open Hours').html_safe %>
       <%= f.input :description, label: ('<i class="fas fa-pen"></i></i> Description').html_safe %>
       <div class="mb-3 instruction">Write a short description of your restaurant and let customers know your general hours for accepting orders.</div>
       <%= f.input :photo, as: :file, label: ('Upload restaurant photo').html_safe %>

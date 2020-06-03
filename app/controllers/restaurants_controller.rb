@@ -1,6 +1,5 @@
+require 'watir'
 class RestaurantsController < ApplicationController
-
-
   def show
     @restaurant = Restaurant.find(params[:id])
     @markers = [{ lat: @restaurant.latitude,
@@ -60,16 +59,25 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
+    browser = Watir::Browser.new
+    browser.goto url
+    d = browser.span class: '_28d6qf4g'
+    d.click
+    time = browser.div class: 'yF-2QEPN'
+    open_time = time.text
+    browser.close
+
     Restaurant.new(
       address: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip,
       phone_number: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip,
       cuisine: html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip,
-      name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip
-      )
+      name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip,
+      time: open_time
+    )
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:description, :photo, :name, :address, :coords, :phone_number, :cuisine, :menu_photo)
+    params.require(:restaurant).permit(:description, :photo, :name, :address, :coords, :phone_number, :cuisine, :menu_photo, :time)
   end
 
   def restaurant_menu_params
