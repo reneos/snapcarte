@@ -14,11 +14,14 @@ class CartsController < ApplicationController
     if params[:status]
       status = params[:status]
       cart.confirmed = status
-      cart.request_type = params[:request_type]
+      cart.request_type = params[:request_type] if params[:request_type]
       cart.save
       if cart.pending?
         redirect_to restaurant_path(cart.restaurant)
-      elsif cart.accepted?
+      elsif cart.accepted? && cart.request_type == 0
+        redirect_to dashboard_index_path
+      elsif cart.accepted? && cart.request_type == 1
+        DeliveryRequester.call(cart)
         redirect_to dashboard_index_path
       end
     elsif params[:cart][:pickup_time]
@@ -30,5 +33,7 @@ class CartsController < ApplicationController
       redirect_to dashboard_index_path
     end
   end
+
+
 
 end
