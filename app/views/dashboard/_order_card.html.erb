@@ -23,16 +23,16 @@
       <% elsif order.accepted? %>
         <li class="list-group-item d-flex justify-content-between">
           <span><i class="fas fa-clock mr-2"></i>Pickup Time:</span>
-          <span><%= order.pickup_time.strftime('%H:%m') %></span>
+          <span><%= order.pickup_time.strftime('%H:%M') %></span>
         </li>
         <li class="list-group-item d-flex justify-content-center">
-          <%= link_to "Mark as picked up", cart_path(order, status: 3), method: :patch, class: "btn btn-primary mt-0" %>
+          <%= link_to "Mark as picked up", cart_path(order, status: 3), method: :patch, remote: true, class: "btn btn-primary mt-0" %>
         </li>
       <% end %>
     <% else %>
       <% if order.pending? %>
         <li class="list-group-item d-flex justify-content-center">
-          <%= link_to "Accept Delivery", cart_path(order, status: 2), method: :patch, class: "btn btn-primary mt-0" %>
+          <%= link_to "Accept Delivery", cart_path(order, status: 2), method: :patch, remote: true, class: "btn btn-primary mt-0" %>
         </li>
       <% elsif order.accepted? %>
           <%= link_to "Track Delivery", order.delivery_url, class: "btn btn-primary mt-0" %>

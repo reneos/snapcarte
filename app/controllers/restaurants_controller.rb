@@ -1,7 +1,10 @@
 require 'watir'
 class RestaurantsController < ApplicationController
-  def show
+  def index
+    @restaurants = policy_scope(Restaurant).all
+  end
 
+  def show
     @restaurant = Restaurant.find(params[:id])
     @markers = [{ lat: @restaurant.latitude,
                 lng: @restaurant.longitude
@@ -63,7 +66,7 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    browser = Watir::Browser.new :chrome, headless: true
+    browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
