@@ -72,10 +72,10 @@ class RestaurantsController < ApplicationController
   private
     require 'open-uri'
   def scrape_restaurant(url)
-    Watir.default_timeout = 120
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+    browser = Watir::Browser.new :firefox, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+    # browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
