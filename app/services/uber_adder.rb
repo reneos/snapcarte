@@ -11,6 +11,14 @@ class UberAdder
     https = Net::HTTP.new(url.host, url.port);
     https.use_ssl = true
 
+
+    dishes =  restaurant.dishes
+    dishes.each do |dish|
+      dish_str = <<-DISH
+
+      DISH
+    end
+
     request = Net::HTTP::Put.new(url)
     request["Authorization"] = "Bearer #{ENV['UBER_TOKEN']}"
     request["Content-Type"] = ["application/json", "text/plain"]
