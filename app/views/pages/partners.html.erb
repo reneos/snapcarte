@@ -1,0 +1,45 @@
+</div>
+<div class="banner ">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class='carousel-img-overlay'></div>
+        <%= image_tag'pizza.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
+      </div>
+      <div class="carousel-item">
+        <div class='carousel-img-overlay'></div>
+        <%= image_tag'sandwich.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
+      </div>
+      <div class="carousel-item">
+        <div class='carousel-img-overlay'></div>
+        <%= image_tag'steak.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
+      </div>
+
+    </div>
+  </div>
+  <div class="main-text hidden-xs">
+    <div class="col-md-12 text-center align-center">
+      <h1>Welcome to Snapcarte Partners</h1>
+      <h3>Your one click solution to digitize your menu</h3>
+      <%= link_to "Add Your Restaurant", new_restaurant_path, class: "btn btn-danger shadow-lg"  %>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 d-flex align-items-center">
+        <div>
+          <h2>Digitize your menu with just one photo</h2>
+          <p>Simply upload a picture of your menu and Snapcarte takes care of the rest.</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <%= image_tag'menu_photo.jpg', crop: :fill, height: 320, class: 'photo w-100 shadow-lg' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">

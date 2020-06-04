@@ -14,32 +14,39 @@
         <div class='carousel-img-overlay'></div>
         <%= image_tag'steak.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
       </div>
-
-    </div>
-  </div>
-  <div class="main-text hidden-xs">
+       </div>
+       <div class="main-text hidden-xs">
     <div class="col-md-12 text-center align-center">
       <h1>Welcome to Snapcarte</h1>
       <h3>Your one click solution to digitize your menu</h3>
-      <%= link_to "Add Your Restaurant", new_restaurant_path, class: "btn btn-danger shadow-lg"  %>
+      <%= link_to "For owners", partners_path, class: "btn btn-danger shadow-lg"  %>
     </div>
   </div>
-</div>
+ </div>
+    <div class="row mt-5 ">
+      <div class="col">
+        <h1>Restaurants</h1>
+      </div>
+    </div>
 
-<div class="jumbotron">
-  <div class="container">
     <div class="row">
-      <div class="col-6 d-flex align-items-center">
-        <div>
-          <h2>Digitize your menu with just one photo</h2>
-          <p>Simply upload a picture of your menu and Snapcarte takes care of the rest.</p>
+      <% @restaurants.each do |restaurant| %>
+      <div class="col-12 col-md-6">
+        <div class="card restaurant-card <%= "opacity-75" unless restaurant.open %>">
+          <%= cl_image_tag restaurant.photo.key, class: "card-img-top", height: '250', crop: :fill %>
+          <span class="restaurant-card-status badge badge-pill badge<%= restaurant.open ? "-success" : "-secondary" %>"><%= restaurant.status %></span>
+          <div class="card-body w-100 pb-0">
+            <div class="card-title">
+              <h2 class="mb-0"><%= restaurant.name %></h2>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush w-100 restaurant-info">
+            <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= restaurant.cuisine %></li>
+          </ul>
+          <%= link_to "", restaurant_path(restaurant) %>
         </div>
       </div>
-      <div class="col-6">
-        <%= image_tag'menu_photo.jpg', crop: :fill, height: 320, class: 'photo w-100 shadow-lg' %>
-      </div>
+      <% end %>
     </div>
   </div>
-</div>
 
-<div class="container">
