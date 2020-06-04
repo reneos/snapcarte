@@ -7,7 +7,7 @@
 <div class="row">
   <% @restaurants.each do |restaurant| %>
   <div class="col-12 col-md-6">
-    <div class="card restaurant-card <%= "opacity-75" unless restaurant.open %>">
+    <div class="card restaurant-card <%= "opacity-75" unless restaurant.open %> mb-4">
       <%= cl_image_tag restaurant.photo.key, class: "card-img-top", height: '250', crop: :fill %>
       <span class="restaurant-card-status badge badge-pill badge<%= restaurant.open ? "-success" : "-secondary" %>"><%= restaurant.status %></span>
       <div class="card-body w-100 pb-0">
@@ -18,7 +18,7 @@
       <ul class="list-group list-group-flush w-100 restaurant-info">
         <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= restaurant.cuisine %></li>
       </ul>
-      <%= link_to "", restaurant_path(restaurant) %>
+      <%= link_to "", restaurant_path(restaurant), class: "restaurant-card-link-cover" %>
     </div>
   </div>
   <% end %>
