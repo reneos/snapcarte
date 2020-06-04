@@ -43,10 +43,15 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.open = !@restaurant.open
     authorize @restaurant
-    @restaurant.save
-    redirect_to restaurant_path(@restaurant)
+    if params[:export]
+      UberAdder.call(@restaurant)
+      redirect_to dashboard_restaurants_path
+    else
+      @restaurant.open = !@restaurant.open
+      @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    end
   end
 
   def edit_menus
