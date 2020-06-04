@@ -6,6 +6,6 @@ class CartItemPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
+    record.cart.user == user
   end
 end

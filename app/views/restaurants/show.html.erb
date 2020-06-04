@@ -90,12 +90,14 @@
           </li>
           </ul>
           <%= link_to "Request Pickup", cart_path(@cart, status: 1, request_type: 0), method: :patch, class: "btn btn-primary"%>
-          <% if @quote %>
+          <% if @quote && @quote["kind"] == "delivery_quote" %>
           <div>
             <div><%= "Delivery cost: #{@quote["fee"]}" %></div>
             <div><%= "Estimated delivery time: #{DateTime.parse(@quote["dropoff_eta"])}" %></div>
             <%= link_to "Request Delivery", cart_path(@cart, status: 1, request_type: 1), method: :patch, class: "btn btn-primary" %>
           </div>
+          <% elsif @quote && @quote["kind"] == "error" %>
+            <div>Sorry, we cannot deliver to this area.</div>
           <% else %>
             <%= link_to "Check Delivery", restaurant_path(@restaurant, request: 'delivery'), class: "btn btn-primary" %>
           <% end %>
