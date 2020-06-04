@@ -74,6 +74,9 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
+    if Rails.env.production?
+      Selenium::WebDriver::Firefox::Binary.path='vendor/firefox/firefox-bin'
+    end
     browser = Watir::Browser.new :firefox, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
     # browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
     browser.goto url
