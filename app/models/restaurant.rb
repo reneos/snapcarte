@@ -3,6 +3,7 @@ class Restaurant < ApplicationRecord
   belongs_to :user
   has_many :menus, dependent: :destroy
   has_many :carts, dependent: :destroy
+  has_many :dishes, through: :menus
   validates :address, :name, :phone_number, :cuisine, :menu_photo, :description, :photo, presence: true
   has_one_attached :photo
   has_one_attached :menu_photo
