@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:destroy]
   resources :dishes, only: [:destroy]
   resources :dashboard, only: [:index]
+  get 'dashboard/pickup_orders', to: 'dashboard#pickup_orders'
+  get 'dashboard/delivery_orders', to: 'dashboard#delivery_orders'
+  get 'dashboard/past_orders', to: 'dashboard#past_orders'
+  get 'dashboard/restaurants', to: 'dashboard#restaurants'
 end
