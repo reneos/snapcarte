@@ -1,5 +1,4 @@
 require 'watir'
-require 'selenium-webdriver'
 require 'webdrivers'
 
 
@@ -70,7 +69,7 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    browser = Watir::Browser.new :chrome
+    browser = Watir::Browser.new :chrome, headless: true
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
