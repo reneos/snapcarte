@@ -69,11 +69,7 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    if Rails.env.production?
-      browser = Watir::Browser.new :phantomjs
-    else
-      browser = Watir::Browser.new :chrome, headless: true
-    end
+    browser = Watir::Browser.new :chrome, headless: true
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
