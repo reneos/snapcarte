@@ -69,7 +69,7 @@ gem 'turbolinks_render'
 gem 'faker'
 gem 'geocoder'
 gem 'money-rails'
-gem 'google-cloud-vision'
+gem 'google-cloud-vision', '0.38.0'
 # web scraping
 gem 'watir'
 gem 'webdrivers'
