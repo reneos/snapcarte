@@ -21,7 +21,7 @@
       <%= @restaurant.status %>
       </span>
     </div>
-       <div class="col-12 col-md-4 d-flex align-items-top">
+     <div class="col-12 col-md-6 col-lg-4 d-flex align-items-top">
       <ul class="list-group w-100 restaurant-info">
         <li class="list-group-item"><span class="icon"><i class="fas fa-map-pin mr-3"></i></span> <%= @restaurant.address %></li>
         <li class="list-group-item"><i class="fas fa-utensils mr-3"></i> <%= @restaurant.cuisine %></li>
@@ -29,23 +29,24 @@
         <li class="list-group-item"><%= @restaurant.description %></li>
       </ul>
     </div>
-    <div class="col-12 col-md-4">
-<h6 class="mb-1"><i class="fas fa-clock mr-3"></i>Open hours: </h6>
-   <table class="table">
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-        <% time_table = @restaurant.time.scan(/(?<day>[A-Z][a-z]{2})(?<hours>\d.+?(AM|PM).+?(AM|PM))/) %>
-        <% time_table.each do |time| %>
-      <li class="list-group-item"><%= time.join(' ') %></li>
-        <% end %>
-    </tr>
-    </tbody>
- </table>
-</div>
-    <div class="col-12 col-md-4">
-      <%= cl_image_tag @restaurant.photo.key, alt: "alttext", crop: :fill, class: "restaurant-img h-100" %>
+    <div class="col-12 col-md-6 col-lg-3">
+      <h6 class="mb-1"><i class="fas fa-clock mr-2"></i>Open hours </h6>
+      <table class="table opening-hours">
+        <tbody>
+          <% time_table = @restaurant.time.scan(/(?<day>[A-Z][a-z]{2})(?<hours>\d.+?(AM|PM).+?(AM|PM))/) %>
+          <% time_table.each do |day| %>
+            <tr>
+              <td><%= day[0] %></td>
+              <td><%= day[1] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+    <div class="col-12 col-md-12 col-lg-5">
+      <%= cl_image_tag @restaurant.photo.key, crop: :fill, class: "restaurant-img h-100" %>
+    </div>
+
     <div class="col-12 col-md-7">
         <% @restaurant.menus.each do |menu| %>
         <h2><%= menu.name %></h2>
@@ -89,12 +90,14 @@
           </li>
           </ul>
           <%= link_to "Request Pickup", cart_path(@cart, status: 1, request_type: 0), method: :patch, class: "btn btn-primary"%>
-          <% if @quote %>
+          <% if @quote && @quote["kind"] == "delivery_quote" %>
           <div>
             <div><%= "Delivery cost: #{@quote["fee"]}" %></div>
             <div><%= "Estimated delivery time: #{DateTime.parse(@quote["dropoff_eta"])}" %></div>
             <%= link_to "Request Delivery", cart_path(@cart, status: 1, request_type: 1), method: :patch, class: "btn btn-primary" %>
           </div>
+          <% elsif @quote && @quote["kind"] == "error" %>
+            <div>Sorry, we cannot deliver to this area.</div>
           <% else %>
             <%= link_to "Check Delivery", restaurant_path(@restaurant, request: 'delivery'), class: "btn btn-primary" %>
           <% end %>
