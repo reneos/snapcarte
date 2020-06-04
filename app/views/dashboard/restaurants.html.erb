@@ -1,0 +1,22 @@
+<div class="row mt-3 dashboard">
+  <div class="col-12 mt-4">
+    <h1><i class="fas fa-tachometer-alt"></i> Your Dashboard</h1>
+  </div>
+
+  <div class="col-12">
+    <div class="nav nav-tabs my-5 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <%= link_to "<i class='fas fa-list mr-2'></i>Pickup Orders".html_safe, dashboard_pickup_orders_path, class: 'nav nav-link' %>
+      <%= link_to "<i class='fas fa-truck'></i> Delivery Orders".html_safe, dashboard_delivery_orders_path, class: 'nav nav-link' %>
+      <%= link_to "<i class='fas fa-book-open mr-2'></i>Past orders</a>".html_safe, dashboard_past_orders_path, class: 'nav nav-link' %>
+      <%= link_to "<i class='fas fa-utensils mr-2'></i>Restaurants</a>".html_safe, dashboard_restaurants_path, class: 'nav nav-link active'  %>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <%= render 'user_restaurants', restaurants: @restaurants %>
+  </div>
+
+</div>
+
+
+

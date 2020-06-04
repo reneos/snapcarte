@@ -1,16 +1,19 @@
 
   <div class="row mt-3 dashboard">
     <div class="col-12 mt-4">
-      <h1>Your Dashboard</h1>
+      <h1><i class="fas fa-tachometer-alt"></i> Your Dashboard</h1>
     </div>
 
 
     <div class="col-12">
       <div class="nav nav-tabs my-5 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-spaces-tab" data-toggle="pill" href="#v-pills-pickup-orders" role="tab" aria-controls="v-pills-pickup-orders" aria-selected="true"><i class="fas fa-list mr-2"></i>Pickup Orders</a>
-        <a class="nav-link" id="v-pills-spaces-tab" data-toggle="pill" href="#v-pills-delivery-orders" role="tab" aria-controls="v-pills-delivery-orders" aria-selected="false"><i class="fas fa-list mr-2"></i>Delivery Orders</a>
-        <a class="nav-link" id="v-pills-bookings-tab" data-toggle="pill" href="#v-pills-past-orders" role="tab" aria-controls="v-pills-past-orders" aria-selected="false"><i class="fas fa-book-open mr-2"></i>Past orders</a>
-        <a class="nav-link" id="v-pills-bookings-tab" data-toggle="pill" href="#v-pills-restaurants" role="tab" aria-controls="v-pills-restaurants" aria-selected="false"><i class="fas fa-utensils mr-2"></i>Restaurants</a>
+        <%= link_to "<i class="fas fa-list mr-2"></i>Pickup Orders".html_safe, pickup_orders_dashboard_index_path %>
+        <%= link_to "<i class="fas fa-truck"></i> Delivery Orders".html_safe, delivery_orders_dashboard_index_path %>
+        <%= link_to "<i class="fas fa-book-open mr-2"></i>Past orders</a>".html_safe, past_orders_index_path %>
+        <%= link_to "<i class="fas fa-utensils mr-2"></i>Restaurants</a>".html_safe, restaurants_dashboard_index_path  %>
+        <a class="nav-link" id="v-pills-spaces-tab" href="#v-pills-delivery-orders" role="tab" aria-controls="v-pills-delivery-orders" aria-selected="false"></a>
+        <a class="nav-link" id="v-pills-bookings-tab" href="#v-pills-past-orders" role="tab" aria-controls="v-pills-past-orders" aria-selected="false">
+        <a class="nav-link" id="v-pills-bookings-tab" href="#v-pills-restaurants" role="tab" aria-controls="v-pills-restaurants" aria-selected="false">
       </div>
     </div>
 
