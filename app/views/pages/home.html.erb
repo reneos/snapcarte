@@ -4,22 +4,21 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class='carousel-img-overlay'></div>
-        <%= image_tag'pizza.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
+        <%= image_tag'pizza.jpg', crop: :fill, height: 380, class: 'd-block w-100' %>
       </div>
       <div class="carousel-item">
         <div class='carousel-img-overlay'></div>
-        <%= image_tag'sandwich.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
+        <%= image_tag'sandwich.jpg', crop: :fill, height: 380, class: 'd-block w-100' %>
       </div>
       <div class="carousel-item">
         <div class='carousel-img-overlay'></div>
-        <%= image_tag'steak.jpg', crop: :fill, height: 480, class: 'd-block w-100' %>
+        <%= image_tag'steak.jpg', crop: :fill, height: 380, class: 'd-block w-100' %>
       </div>
        </div>
        <div class="main-text hidden-xs">
     <div class="col-md-12 text-center align-center">
       <h1>Welcome to Snapcarte</h1>
-      <h3>Your one click solution to digitize your menu</h3>
-      <%= link_to "Partners", partners_path, class: "btn btn-danger shadow-lg"  %>
+      <h3>Find your restaurant</h3>
     </div>
   </div>
  </div>
@@ -31,7 +30,7 @@
 
     <div class="row">
       <% @restaurants.each do |restaurant| %>
-      <div class="d-flex justify-content-between col-12 col-md-3 col-sm-6 mb-3 p-5">
+      <div class="d-flex justify-content-between col-10 col-md-6 col-sm-3 mb-3 p-5">
         <div class="card restaurant-card <%= "opacity-75" unless restaurant.open %>">
           <%= cl_image_tag restaurant.photo.key, class: "card-img-top", height: '250', crop: :fill %>
           <span class="restaurant-card-status badge badge-pill badge<%= restaurant.open ? "-success" : "-secondary" %>"><%= restaurant.status %></span>

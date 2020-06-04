@@ -11,6 +11,7 @@
   background-color: white;
   box-shadow: 0 0 10px #e4dfd4;
   border-radius: 10px;
+  width: 100%;
 }
 
 .restaurant-card-img {
@@ -19,4 +20,5 @@
   height: 300px;
   object-fit: cover;
   object-position: center;
+  overflow: auto;
 }
