@@ -1,5 +1,9 @@
 require 'watir'
 class RestaurantsController < ApplicationController
+  def index
+
+    @restaurants = policy_scope(Restaurant).all
+  end
   def show
 
     @restaurant = Restaurant.find(params[:id])

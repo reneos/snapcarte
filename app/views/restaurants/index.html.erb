@@ -1,1 +1,20 @@
 <h1>Restaurants</h1>
+<% @restaurants.each do |restaurant| %>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div class="ml-2 d-flex flex-column justify-content-between">
+      <div class="content">
+        <h2><%= restaurant.name %></h2>
+        <p class="restaurant-index-address"><%= restaurant.address %></p>
+      </div>
+      <div class="buttons">
+        <span class="emphasize"><%= restaurant.phone_number %></span>
+        <%= link_to restaurant_path(restaurant), class: "btn btn-success" do %>
+          <i class="far fa-eye"></i> View restaurant
+        <% end %>
+      </div>
+    </div>
+    <div class="list-img-container">
+      <%= cl_image_tag restaurant.photo.key, height: 200, fill: :fit, alt: restaurant.name, class: "list-img" %>
+    </div>
+  </li>
+<% end %>
