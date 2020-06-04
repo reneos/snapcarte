@@ -1,4 +1,8 @@
 require 'watir'
+require 'selenium-webdriver'
+require 'webdrivers'
+
+
 class RestaurantsController < ApplicationController
   def index
     @restaurants = policy_scope(Restaurant).all
@@ -66,7 +70,17 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+
+    Selenium::WebDriver::Chrome.path = ENV.fetch('GOOGLE_CHROME_BIN', nil)
+
+    options = Selenium::WebDriver::Chrome::Options.new(
+      prefs: { 'profile.default_content_setting_values.notifications': 2 },
+      binary: ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+    )
+
+    driver = Selenium::WebDriver.for :chrome, options: options
+
+    browser = Watir::Browser.new :chrome
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
