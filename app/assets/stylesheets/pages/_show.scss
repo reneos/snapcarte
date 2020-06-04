@@ -9,6 +9,13 @@
   }
 }
 
+.opening-hours {
+  font-size: .8em;
+  td {
+    padding: .50em .75em;
+    border-top: 1px dotted $grey;
+  }
+}
 
 .restaurant-show-img {
   width: 100%;
@@ -48,7 +55,7 @@
 .restaurant-img {
   border-radius: 10px;
   width: 100%;
-  height: 200px;
+  max-height: 250px;
   object-fit: cover;
   object-position: center;
 }
