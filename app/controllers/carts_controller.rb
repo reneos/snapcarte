@@ -21,12 +21,12 @@ class CartsController < ApplicationController
         UserChannel.broadcast_to(user, render_to_string(partial: "shared/notification"))
         redirect_to restaurant_path(cart.restaurant), notice: "Order submitted to restaurant! Please wait for confirmation."
       elsif cart.accepted? && cart.request_type == 0
-        redirect_to dashboard_index_path
+        redirect_to dashboard_pickup_orders_path
       elsif cart.accepted? && cart.request_type == 1
         DeliveryRequester.call(cart)
-        redirect_to dashboard_index_path
-      elsif cart.completed?
-        redirect_to dashboard_index_path
+        redirect_to dashboard_delivery_orders_path
+      elsif cart.completed? && cart.request_type == 0
+        redirect_to dashboard_pickup_orders_path
       end
     elsif params[:cart][:pickup_time]
       time = params[:cart][:pickup_time]
