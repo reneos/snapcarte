@@ -53,7 +53,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
 end
 
@@ -61,6 +60,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ADDED GEMS
+gem 'selenium-webdriver'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 gem 'turbolinks_render'
