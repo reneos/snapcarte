@@ -3,8 +3,8 @@
 
   <div class="card-body">
 
-    <h2><%= restaurant.name %></h2>
-    <span class="badge badge-pill badge-<%= restaurant.open ? 'success' : 'danger'%>"> <%= restaurant.status %> </span>
+    <h2 class="d-flex justify-content-between"><%= restaurant.name %><span class="badge badge-pill badge-<%= restaurant.open ? 'success' : 'danger'%>"> <%= restaurant.status %> </span></h2>
+
     <div><%= link_to 'View restaurant', restaurant_path(restaurant), class: "btn btn-primary"%></div>
     <div><%= link_to 'Edit restaurant', "#", class: "btn btn-primary"  %></div>
     <div><%= link_to 'Edit Menu',  '#', class: "btn btn-primary"%></div>
