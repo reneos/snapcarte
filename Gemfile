@@ -59,9 +59,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'selenium-webdriver', '~> 3.6.0'
+
 
 # ADDED GEMS
+gem 'selenium-webdriver'
 gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 gem 'turbolinks_render'

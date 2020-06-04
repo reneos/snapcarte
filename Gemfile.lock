@@ -348,7 +348,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   redis (~> 4.0)
   sass-rails (>= 6)
-  selenium-webdriver (~> 3.6.0)
+  selenium-webdriver
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
