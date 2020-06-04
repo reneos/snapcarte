@@ -1,11 +1,15 @@
 require 'watir'
 class RestaurantsController < ApplicationController
   def show
+
     @restaurant = Restaurant.find(params[:id])
     @markers = [{ lat: @restaurant.latitude,
                 lng: @restaurant.longitude
               }]
     @cart = Cart.find_by_user_and_restaurant(current_user, @restaurant) || Cart.create(user: current_user, restaurant: @restaurant)
+    if params[:request] && @cart
+      @quote = QuoteGetter.call(@cart)
+    end
     authorize @restaurant
   end
 
@@ -59,7 +63,7 @@ class RestaurantsController < ApplicationController
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    browser = Watir::Browser.new
+    browser = Watir::Browser.new :chrome, headless: true
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
