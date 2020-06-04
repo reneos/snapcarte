@@ -13,11 +13,21 @@ class UberAdder
 
 
     dishes =  restaurant.dishes
-    dishes.each do |dish|
-      dish_str = <<-DISH
-
-      DISH
+    items = dishes.map do |dish|
+        {
+          "title": {
+            "translations": {
+              "en_us": dish.name
+            }
+          },
+          "image_url": "null",
+          "price_info": {
+            "price": dish.price_cents
+          },
+          "id": dish.name
+        }
     end
+
 
     request = Net::HTTP::Put.new(url)
     request["Authorization"] = "Bearer #{ENV['UBER_TOKEN']}"
