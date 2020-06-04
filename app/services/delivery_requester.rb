@@ -22,7 +22,11 @@ class DeliveryRequester
                   ['pickup_name', restaurant.name],
                   ['pickup_phone_number', restaurant.phone_number],
                   ['manifest','Food'],
-                  ['quote_id',quote_id]
+                  ['quote_id',quote_id],
+                  ['robo_pickup', '00:00:010'],
+                  ['robo_pickup_complete', '00:00:25'],
+                  ['robo_dropoff', '00:00:30'],
+                  ['robo_delivered', '00:01:30']
                 ]
 
     request = Net::HTTP::Post.new(url)
