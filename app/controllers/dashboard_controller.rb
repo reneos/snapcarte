@@ -3,8 +3,7 @@ class DashboardController < ApplicationController
   skip_after_action :verify_authorized
 
   def index
-    # @restaurants = policy_scope(current_user.restaurants)
-    redirect_to pickup_orders_dashboard_index_path
+    redirect_to dashboard_pickup_orders_path
   end
 
   def pickup_orders
