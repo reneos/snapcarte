@@ -2,7 +2,10 @@
 
 
   <div class="card-body">
-    <h2 class="d-flex justify-content-between"><%= restaurant.name %><span class="badge badge-pill badge-<%= restaurant.open ? 'success' : 'danger'%>"> <%= restaurant.status %> </span></h2>
+<div class="button-rest-card">
+    <h2 class="d-flex justify-content-between"><%= restaurant.name %>
+      <span class="<%= restaurant.open ? 'success' : 'danger'%>"> <div class="button-card"><%= restaurant.status %></div> </span></h2>
+    </div>
     <div><%= link_to '<i class="far fa-eye"></i> View restaurant'.html_safe , restaurant_path(restaurant), class: "btn btn-primary" %></div>
     <div><%= link_to '<i class="fas fa-edit"></i> Edit Menu'.html_safe, edit_menus_restaurant_path(restaurant), class: "btn btn-primary"%></div>
     <div><%= link_to '<i class="fab fa-uber"></i> Export to uber eats'.html_safe, restaurant_path(restaurant, export: true), method: :patch, class: "btn btn-primary"%></div>
