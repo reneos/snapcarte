@@ -15,7 +15,7 @@
 
       <%= simple_form_for @restaurant, url: update_menus_restaurant_path, data: { 'turbolinks-scroll': false }, remote: true do |f| %>
         <%= simple_fields_for :hidden_field do |x|  %>
-          <%= x.input :redirect, data: { target: 'dishes.hidden_field' } %>
+          <%= x.input :redirect, as: :hidden, input_html: { data: { target: 'dishes.hiddenField' }} %>
         <% end %>
         <%= f.simple_fields_for :menus do |m| %>
           <%= m.input :name, label: 'Section Name' %>
