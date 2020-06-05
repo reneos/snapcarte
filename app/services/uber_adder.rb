@@ -48,7 +48,6 @@ class UberAdder
               "en_us": dish.name
             }
           },
-          "image_url": "null",
           "price_info": {
             "price": dish.price_cents
           },
