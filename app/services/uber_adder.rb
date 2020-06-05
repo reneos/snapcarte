@@ -100,8 +100,8 @@ class UberAdder
       open_hours << {
         "time_periods": [
             {
-              "start_time": times[0],
-              "end_time": times[1]
+              "start_time": "00:00",
+              "end_time": "23:59"
             }
         ],
         "day_of_week": day_of_week
