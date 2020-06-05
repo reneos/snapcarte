@@ -16,7 +16,12 @@
   &:hover, &:active, &:focus {
     background-color: darken($dark-yellow, 25%);
   }
-  color: white;
 }
-
-
+.button-card {
+  color: white;
+  border: solid 1px white;
+  border-radius: 5px;
+  background-color: $success;
+  padding: 10px;
+  font-size: 20px;
+}
