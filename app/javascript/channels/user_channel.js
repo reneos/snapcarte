@@ -2,7 +2,7 @@ import consumer from "./consumer";
 
 const initUserCable = () => {
 
-  const messagesContainer = document.querySelector('.notification');
+  // const messagesContainer = document.querySelector('.notification');
   const id = document.querySelector('body').dataset.userId;
   consumer.subscriptions.create({ channel: "UserChannel", id: id }, {
     initialized() {

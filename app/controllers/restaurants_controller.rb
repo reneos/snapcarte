@@ -1,4 +1,7 @@
 require 'watir'
+require 'webdrivers'
+
+
 class RestaurantsController < ApplicationController
   def index
     @restaurants = policy_scope(Restaurant).all
@@ -40,10 +43,15 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.open = !@restaurant.open
     authorize @restaurant
-    @restaurant.save
-    redirect_to restaurant_path(@restaurant)
+    if params[:export]
+      UberAdder.call(@restaurant)
+      redirect_to dashboard_restaurants_path
+    else
+      @restaurant.open = !@restaurant.open
+      @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    end
   end
 
   def edit_menus
@@ -62,11 +70,15 @@ class RestaurantsController < ApplicationController
   end
 
   private
-    require 'open-uri'
+  require 'open-uri'
   def scrape_restaurant(url)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+    if Rails.env.production?
+      Selenium::WebDriver::Firefox::Binary.path='vendor/firefox/firefox-bin'
+    end
+    browser = Watir::Browser.new :firefox, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+    # browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
     browser.goto url
     d = browser.span class: '_28d6qf4g'
     d.click
