@@ -4,7 +4,7 @@ require 'webdrivers'
 
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = policy_scope(Restaurant).all
+    @restaurants = policy_scope(Restaurant).all.order(open: :desc)
   end
 
   def show
