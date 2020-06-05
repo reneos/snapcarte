@@ -63,7 +63,11 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     authorize @restaurant
     if @restaurant.update(restaurant_menu_params)
-      redirect_to edit_menus_restaurant_path(@restaurant)
+      if params[:hidden_field] && params[:hidden_field][:redirect] == "true"
+        redirect_to restaurant_path(@restaurant)
+      else
+        redirect_to edit_menus_restaurant_path(@restaurant)
+      end
     else
       render :edit_menus
     end

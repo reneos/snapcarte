@@ -14,6 +14,9 @@
   <div class="col-12 col-lg-6 menu-info">
 
       <%= simple_form_for @restaurant, url: update_menus_restaurant_path, data: { 'turbolinks-scroll': false }, remote: true do |f| %>
+        <%= simple_fields_for :hidden_field do |x|  %>
+          <%= x.input :redirect, as: :hidden, input_html: { data: { target: 'dishes.hiddenField' }} %>
+        <% end %>
         <%= f.simple_fields_for :menus do |m| %>
           <%= m.input :name, label: 'Section Name' %>
           <ul class="list-group mb-3">
@@ -26,7 +29,6 @@
               <%= link_to dish_path(d.object), class: 'ml-1', method: :delete, remote: true do %>
                   <i class="fas fa-minus-circle"></i>
                 <% end %>
-
             </li>
           <% end %>
           </ul>
@@ -39,7 +41,7 @@
 
   </div>
   <div class="col-12 text-right">
-    <%= link_to "Continue to restaurant preview", restaurant_path(@restaurant), class: 'btn btn-primary mt-0', data: { target: 'dishes.previewButton' } %>
+    <%= link_to "Continue to restaurant preview", restaurant_path(@restaurant), class: 'btn btn-primary mt-0', data: { target: 'dishes.previewButton', action: 'click->dishes#submitRedirect' } %>
   </div>
 </div>
 
