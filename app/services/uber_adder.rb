@@ -136,6 +136,7 @@ class UberAdder
     request["Content-Type"] = ["application/json", "text/plain"]
     request.body = JSON.pretty_generate(body)
     response = https.request(request)
+    binding.pry
     puts response.read_body
   end
 

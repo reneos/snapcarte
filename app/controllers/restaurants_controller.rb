@@ -87,12 +87,18 @@ class RestaurantsController < ApplicationController
     open_time = time.text
     browser.close
 
+    address = html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1]
+    phone_number = html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2]
+    cuisine = html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0]
+    name = html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe')
+
+
     Restaurant.new(
-      address: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[1].text.strip,
-      phone_number: html_doc.search('.restaurants-detail-top-info-TopInfo__infoCellLink--2ZRPG')[2].text.strip,
-      cuisine: html_doc.search('.restaurants-detail-overview-cards-DetailsSectionOverviewCard__tagText--1OH6h')[0].text.strip,
-      name: html_doc.search('.restaurants-detail-top-info-TopInfo__restaurantName--1IKBe').text.strip,
-      time: open_time
+      address: address ? address.text.strip : "",
+      phone_number: phone_number ? phone_number.text.strip : "",
+      cuisine: phone_number ? phone_number.text.strip : "",
+      name: name ? name.text.strip : "",
+      time: open_time ? open_time.strip : ""
     )
   end
 

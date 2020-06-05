@@ -10,12 +10,12 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto align-items-center">
+        <li class="nav-item">
+          <%= link_to "Partnership", partners_path, class: "nav-link" %>
+        </li>
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "Dashboard", dashboard_index_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Partnership", partners_path, class: "nav-link" %>
         </li>
         <li class="nav-item mr-2">
           <% if current_user.restaurants.empty? %>
