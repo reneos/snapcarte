@@ -1,5 +1,5 @@
 # Snapcarte
-A Rails app to help restaurant owners quickly generate a digital menu with OCR and create a simple online takeout service. 
+A Rails app to help restaurant owners quickly generate a digital menu with OCR and create a simple online takeout service. Click [here](https://www.snapcarte.com/) to see the project.
 
 # Frameworks, Gems, etc.
 - Ruby on Rails
